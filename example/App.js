@@ -31,6 +31,20 @@ import {
   MatiGlobalIdSdk,
 } from 'react-native-mati-global-id-sdk';
 
+const styles = StyleSheet.create({
+  matiButtonStyle: {
+    width: 300,
+    ...Platform.select({
+      ios: {
+        height: 60,
+      },
+      android: {
+        height: 40,
+      },
+    }),
+  },
+});
+
 export default class App extends Component {
   constructor() {
     super();
@@ -44,9 +58,10 @@ export default class App extends Component {
         style={{
           flex: 1,
           justifyContent: 'center',
+          alignItems: 'center',
           backgroundColor: 'powderblue',
         }}>
-        <MatiLoginButton style={{width: 300, height: 60}} Text="Click Here" />
+        <MatiLoginButton style={styles.matiButtonStyle} Text="Click Here" />
       </View>
     );
   }
