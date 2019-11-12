@@ -54,17 +54,15 @@ export default class App extends Component {
   }
 
   componentDidMount() {
-    MatiGlobalIdSdk.setMatiCallback(
-      (isSuccess, identityId) =>{
-        console.log('onSuccess');
-      },
-      (cancel) =>{
-        console.log('cancel:' + cancel);
-      },
-      (loginError) =>{
-        console.log('onError:' + loginError);
+    MatiGlobalIdSdk.setMatiCallback((isSuccess, identityIdOrError) => {
+      if (isSuccess) {
+        console.log(
+          'isSuccess:' + isSuccess + ' identityId:' + identityIdOrError,
+        );
+      } else {
+        console.log('isSuccess:' + isSuccess + ' error:' + identityIdOrError);
       }
-    );
+    });
   }
 
   render() {

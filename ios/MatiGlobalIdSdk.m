@@ -2,11 +2,7 @@
 
 
 @implementation MatiGlobalIdSdk {
-
-RCTResponseSenderBlock onSuccessLocal;
-RCTResponseSenderBlock onCancelLocal;
-RCTResponseSenderBlock onErrorLocal;
-    
+    RCTResponseSenderBlock onMatiCallback;    
 }
 
 RCT_EXPORT_MODULE()
@@ -16,12 +12,10 @@ RCT_EXPORT_METHOD(init:(NSString *)clientId)
     [MFKYC registerWithClientId:clientId metadata:nil];
 }
 
-RCT_EXPORT_METHOD(setMatiCallback:(RCTResponseSenderBlock)onSuccess onCancelCallback:(RCTResponseSenderBlock) onCancel  onErrorCallback: (RCTResponseSenderBlock)onError)
+RCT_EXPORT_METHOD(setMatiCallback:(RCTResponseSenderBlock)callback)
 {
     [MFKYC instance].delegate = self;
-    onSuccessLocal = onSuccess;
-    onCancelLocal = onCancel;
-    onErrorLocal = onError;
+    onMatiCallback = callback;
 }
 
 RCT_EXPORT_METHOD(metadata:(NSDictionary *)metadata)
@@ -30,11 +24,15 @@ RCT_EXPORT_METHOD(metadata:(NSDictionary *)metadata)
 }
 
 - (void)mfKYCLoginSuccessWithIdentityId:(NSString *)identityId {
-    onSuccessLocal(@[identityId]);
+    if(onMatiCallback != nil){
+        onMatiCallback(@[@YES, identityId]);
+    }
 }
 
 - (void)mfKYCLoginCancelled {
-     onSuccessLocal(@[]);
+    if(onMatiCallback != nil){
+        onMatiCallback(@[@NO, @"Cancel"]);
+    }
 }
 
 @end

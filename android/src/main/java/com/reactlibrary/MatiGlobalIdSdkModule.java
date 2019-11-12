@@ -16,6 +16,7 @@ import com.matilock.mati_kyc_sdk.LoginResult;
 import com.matilock.mati_kyc_sdk.Mati;
 import com.matilock.mati_kyc_sdk.MatiCallback;
 import com.matilock.mati_kyc_sdk.MatiCallbackManager;
+import com.matilock.mati_kyc_sdk.MatiLoginManager;
 import com.matilock.mati_kyc_sdk.Metadata;
 
 import java.lang.ref.WeakReference;
@@ -29,9 +30,7 @@ public class MatiGlobalIdSdkModule extends ReactContextBaseJavaModule implements
     private MatiCallbackManager mCallbackManager = MatiCallbackManager.createNew();
 
     public static WeakReference<MatiGlobalIdSdkModule> weakReferenceMatiGlobalIdSdkModule;
-    Callback mOnSuccess;
-    Callback mOnCancel;
-    Callback mOnError;
+    Callback mOnCallback;
 
     public MatiGlobalIdSdkModule(ReactApplicationContext reactContext) {
         super(reactContext);
@@ -55,15 +54,14 @@ public class MatiGlobalIdSdkModule extends ReactContextBaseJavaModule implements
             public void run() {
                 Mati.init(reactContext, clientId);
                 reactContext.addActivityEventListener(MatiGlobalIdSdkModule.this);
+                MatiLoginManager.getInstance().registerCallback(mCallbackManager, MatiGlobalIdSdkModule.this);
             }
         });
     }
 
     @ReactMethod
-    public void setMatiCallback(Callback onSuccess, Callback onCancel, Callback onError) {
-        mOnSuccess = onSuccess;
-        mOnCancel = onCancel;
-        mOnError = onError;
+    public void setMatiCallback(Callback callback) {
+        mOnCallback = callback;
     }
 
     @ReactMethod
@@ -95,22 +93,22 @@ public class MatiGlobalIdSdkModule extends ReactContextBaseJavaModule implements
 
     @Override
     public void onSuccess(LoginResult pLoginResult) {
-        if(mOnSuccess != null){
-            mOnSuccess.invoke(pLoginResult.isSuccess(), pLoginResult.getIdentityId());
+        if(mOnCallback != null){
+            mOnCallback.invoke(pLoginResult.isSuccess(), pLoginResult.getIdentityId());
         }
     }
 
     @Override
     public void onCancel() {
-        if(mOnCancel != null){
-            mOnCancel.invoke("Cancel");
+        if(mOnCallback != null){
+            mOnCallback.invoke(false, "Cancel");
         }
     }
 
     @Override
     public void onError(LoginError pLoginError) {
-        if(mOnError != null) {
-            mOnError.invoke(pLoginError.getMessage());
+        if(mOnCallback != null) {
+            mOnCallback.invoke(false, pLoginError.getMessage());
         }
     }
 }
