@@ -50,6 +50,21 @@ export default class App extends Component {
     super();
     console.log('Constructor Called.');
     MatiGlobalIdSdk.init('5dc09bd3047ea0001c4b20ba');
+    MatiGlobalIdSdk.metadata({key: 'value'});
+  }
+
+  componentDidMount() {
+    MatiGlobalIdSdk.setMatiCallback(
+      (isSuccess, identityId) =>{
+        console.log('onSuccess');
+      },
+      (cancel) =>{
+        console.log('cancel:' + cancel);
+      },
+      (loginError) =>{
+        console.log('onError:' + loginError);
+      }
+    );
   }
 
   render() {
