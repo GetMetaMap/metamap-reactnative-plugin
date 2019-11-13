@@ -53,5 +53,9 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>NSCameraUsageDescription</key>
+	<string>Mati needs access to your Camera</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Mati needs access to your media library</string>
 </dict>
 </plist>
