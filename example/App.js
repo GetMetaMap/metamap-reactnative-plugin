@@ -7,24 +7,7 @@
  */
 
 import React, {Component} from 'react';
-import {
-  SafeAreaView,
-  StyleSheet,
-  ScrollView,
-  View,
-  Text,
-  StatusBar,
-  NativeModules,
-  requireNativeComponent,
-} from 'react-native';
-
-// import {
-//   Header,
-//   LearnMoreLinks,
-//   Colors,
-//   DebugInstructions,
-//   ReloadInstructions,
-// } from 'react-native/Libraries/NewAppScreen';
+import {StyleSheet, View} from 'react-native';
 
 import {
   MatiLoginButton,
