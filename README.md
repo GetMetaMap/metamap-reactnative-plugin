@@ -94,14 +94,3 @@ The following permissions are needed to capture video and access the photo galle
 <key>NSPhotoLibraryUsageDescription</key>
 <string>Mati needs access to your media library</string>
 ```
-
-##Android build
-
-Migrate your project to Androidx by adding the following property to gradle.properties.
-
-### gradle.properties
-
-```
-android.useAndroidX=true
-android.enableJetifier=true
-```
