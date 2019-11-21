@@ -3,7 +3,7 @@
 Create a new React Native project.
 Add the SDK module to your package.json
 
-"react-native-mati-global-id-sdk": "<path to plugin folder>/react-native-mati-global-id-sdk"
+npm install https://github.com/MatiFace/react-native-mati-global-id-sdk.git --save
 
 ## Mati SDK initialization
 
