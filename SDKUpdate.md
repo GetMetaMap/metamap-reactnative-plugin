@@ -9,7 +9,12 @@
 
 ### React Native Android:
 
--Nothing to do the new sdk will be added via gradle.
+-Update the Mati sdk version in "android/build.gradle"
+
+```
+implementation 'com.matilock:mati-global-id-sdk:{new version number}'
+```
+
 -Sync gradle to pull the latest version of the SDK
 
 ## If you need to update the sdk public interface:
