@@ -1,9 +1,11 @@
 # Mati module for Android And IOS SDK documentation
 
 Create a new React Native project.
-Add the SDK module to your package.json
+Add the SDK module to your package.json by command
 
 npm install https://github.com/MatiFace/react-native-mati-global-id-sdk.git --save
+
+# For iOS platform please check information at end of readme
 
 ## Mati SDK initialization
 
@@ -86,7 +88,7 @@ In the IOS platform find the Podfile file. The targeted OS version should be a m
 
 The following permissions are needed to capture video and access the photo gallery.
 
-###Info.plist
+###Info.plist –– IMPORTANT add this descriptions to your project
 
 ```
 <key>NSCameraUsageDescription</key>
