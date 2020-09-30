@@ -24,5 +24,12 @@ RCT_CUSTOM_VIEW_PROPERTY(Text, NSString, UIView)
   
 }
 
+RCT_CUSTOM_VIEW_PROPERTY(flowId, NSString, UIView)
+{
+    MFKYCButton * matiButton  = [view viewWithTag:100];
+    matiButton.flowId = json ? [RCTConvert NSString:json] : @"";
+  
+}
+
 
 @end

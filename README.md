@@ -74,7 +74,10 @@ export default class App extends Component {
           alignItems: 'center',
           backgroundColor: 'powderblue',
         }}>
+        //If you want to work with default flow.
         <MatiLoginButton style={styles.matiButtonStyle} Text="Click Here" />
+        //If you want to work with specific flow, please add "flowId" parameter.
+        <MatiLoginButton style={styles.matiButtonStyle} Text="Click Here" flowId="5ea2f0ce6zz8ad001bb12309" />
       </View>
     );
   }
