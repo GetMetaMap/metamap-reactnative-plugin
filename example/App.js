@@ -1,13 +1,9 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow
- */
-
 import React, {Component} from 'react';
-import {StyleSheet, View} from 'react-native';
+import {
+  StyleSheet,
+  View
+} from 'react-native';
+
 
 import {
   MatiLoginButton,
@@ -32,11 +28,17 @@ export default class App extends Component {
   constructor() {
     super();
     console.log('Constructor Called.');
-    MatiGlobalIdSdk.init('5dc09bd3047ea0001c4b20ba');
+
+	//Init SDk
+	MatiGlobalIdSdk.init('5c94e3123451be83c17');
+
+	//Send metadata
     MatiGlobalIdSdk.metadata({key: 'value'});
   }
 
   componentDidMount() {
+
+	//register to login callback
     MatiGlobalIdSdk.setMatiCallback((isSuccess, identityIdOrError) => {
       if (isSuccess) {
         console.log(
@@ -48,6 +50,7 @@ export default class App extends Component {
     });
   }
 
+  //Add button to view graph
   render() {
     return (
       <View
@@ -57,7 +60,8 @@ export default class App extends Component {
           alignItems: 'center',
           backgroundColor: 'powderblue',
         }}>
-        <MatiLoginButton style={styles.matiButtonStyle} Text="Click Here" flowId="5ea2f0ce6zz8ad001bb12309"/>
+
+        <MatiLoginButton style={styles.matiButtonStyle} Text="Click Here" />
       </View>
     );
   }
