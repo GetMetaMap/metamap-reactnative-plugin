@@ -43,8 +43,8 @@ public class MatiLoginButtonManager extends SimpleViewManager<MatiLoginButton> {
         view.setText(text);
     }
 
-     @ReactProp(name = "flowId", defaultFloat = 0f)
-    public void setBorderRadius(MatiLoginButton view, String text) {
-        view.flowId = text;
+    @ReactProp(name = "flowId", defaultFloat = 0f)
+    public void setFlowId(MatiLoginButton view, String text) {
+        view.mFlowId = text;
     }
 }
