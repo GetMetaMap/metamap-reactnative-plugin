@@ -94,10 +94,13 @@ The following permissions are needed to capture video and access the photo galle
 
 ### Info.plist – IMPORTANT add this descriptions to your project
 
+For voiceliveness feature please add NSMicrophoneUsageDescription
 
 ```
 <key>NSCameraUsageDescription</key>
 <string>Mati needs access to your Camera</string>
 <key>NSPhotoLibraryUsageDescription</key>
 <string>Mati needs access to your media library</string>
+<key>NSMicrophoneUsageDescription</key>
+<string>Mati needs access to your Microphone</string>
 ```
