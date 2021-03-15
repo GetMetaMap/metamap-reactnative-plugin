@@ -2,36 +2,39 @@
 
 
 @implementation MatiGlobalIdSdk {
-    RCTResponseSenderBlock onMatiCallback;    
+    bool hasListeners;
 }
 
 RCT_EXPORT_MODULE()
 
-RCT_EXPORT_METHOD(init:(NSString *)clientId)
+RCT_EXPORT_METHOD(setParams:(NSString * _Nonnull)clientId flowId:(NSString * _Nullable)flowId metadata:(NSDictionary<NSString *, id> * _Nullable)metadata)
 {
-    [MFKYC registerWithClientId:clientId metadata:nil];
+    dispatch_async(dispatch_get_main_queue(), ^(void){
+        self.matiButton = [[MatiButton alloc] init];
+        [self.matiButton setParamsWithClientId: clientId flowId: flowId metadata: metadata];
+        [MatiButtonResult shared].delegate = self;
+        self->hasListeners = YES;
+    });
 }
 
-RCT_EXPORT_METHOD(setMatiCallback:(RCTResponseSenderBlock)callback)
+RCT_EXPORT_METHOD(showFlow)
 {
-    [MFKYC instance].delegate = self;
-    onMatiCallback = callback;
+    dispatch_async(dispatch_get_main_queue(), ^(void){
+        [self.matiButton sendActionsForControlEvents:UIControlEventTouchUpInside];
+    });
 }
 
-RCT_EXPORT_METHOD(metadata:(NSDictionary *)metadata)
-{
-   [MFKYC instance].metadata = metadata;
-}
+-(NSArray<NSString *> *)supportedEvents { return @[@"verificationSuccess", @"verificationCanceled"]; }
 
-- (void)mfKYCLoginSuccessWithIdentityId:(NSString *)identityId {
-    if(onMatiCallback != nil){
-        onMatiCallback(@[@YES, identityId]);
+- (void)verificationSuccessWithIdentityId:(NSString *)identityId {
+    if (hasListeners) {
+        [self sendEventWithName:@"verificationSuccess" body:@{@"With Identity Id": identityId}];
     }
 }
 
-- (void)mfKYCLoginCancelled {
-    if(onMatiCallback != nil){
-        onMatiCallback(@[@NO, @"Cancel"]);
+- (void)verificationCancelled {
+    if (hasListeners) {
+        [self sendEventWithName:@"verificationCanceled" body: nil];
     }
 }
 

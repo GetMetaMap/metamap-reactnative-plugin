@@ -1,6 +1,10 @@
+#import <React/RCTEventEmitter.h>
 #import <React/RCTBridgeModule.h>
-#import <MatiGlobalIDSDK/MatiGlobalIDSDK.h>
 
-@interface MatiGlobalIdSdk : NSObject <RCTBridgeModule, MFKYCDelegate>
+#import <MatiSDK/MatiSDK.h>
+
+@interface MatiGlobalIdSdk : RCTEventEmitter <RCTBridgeModule, MatiButtonResultDelegate>
+
+@property (nonatomic, strong) MatiButton *matiButton;
 
 @end

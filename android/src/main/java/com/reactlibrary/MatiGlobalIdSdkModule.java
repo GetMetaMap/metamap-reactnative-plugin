@@ -2,44 +2,32 @@ package com.reactlibrary;
 
 import android.app.Activity;
 import android.content.Intent;
-
-
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import com.facebook.react.bridge.ActivityEventListener;
 import com.facebook.react.bridge.ReactApplicationContext;
+import com.facebook.react.bridge.ReactContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
-import com.facebook.react.bridge.Callback;
-
 import com.facebook.react.bridge.ReadableMap;
-import com.matilock.mati_kyc_sdk.LoginError;
-import com.matilock.mati_kyc_sdk.LoginResult;
-import com.matilock.mati_kyc_sdk.Mati;
-import com.matilock.mati_kyc_sdk.MatiCallback;
-import com.matilock.mati_kyc_sdk.MatiCallbackManager;
-import com.matilock.mati_kyc_sdk.MatiLoginManager;
+import com.facebook.react.bridge.WritableMap;
+import com.facebook.react.modules.core.DeviceEventManagerModule;
+import com.matilock.mati_kyc_sdk.MatiButton;
 import com.matilock.mati_kyc_sdk.Metadata;
-
-import java.lang.ref.WeakReference;
+import com.matilock.mati_kyc_sdk.kyc.KYCActivity;
 import java.util.HashMap;
 import java.util.Map;
 
+import static android.app.Activity.RESULT_OK;
 
-public class MatiGlobalIdSdkModule extends ReactContextBaseJavaModule implements ActivityEventListener, MatiCallback {
+public class MatiGlobalIdSdkModule extends ReactContextBaseJavaModule implements ActivityEventListener {
 
     private final ReactApplicationContext reactContext;
-    private MatiCallbackManager mCallbackManager = MatiCallbackManager.createNew();
-
-    public static WeakReference<MatiGlobalIdSdkModule> weakReferenceMatiGlobalIdSdkModule;
-    Callback mOnCallback;
+    private MatiButton matiButton;
 
     public MatiGlobalIdSdkModule(ReactApplicationContext reactContext) {
         super(reactContext);
         this.reactContext = reactContext;
-        weakReferenceMatiGlobalIdSdkModule = new WeakReference<>(this);
-    }
-
-    public  Activity getActivity() {
-        return getCurrentActivity();
     }
 
     @Override
@@ -48,42 +36,34 @@ public class MatiGlobalIdSdkModule extends ReactContextBaseJavaModule implements
     }
 
     @ReactMethod
-    public void init(final String clientId) {
+    public void setParams(final String clientId, @Nullable final String flowId , @Nullable final ReadableMap metadata) {
+
         reactContext.runOnUiQueueThread(new Runnable() {
             @Override
             public void run() {
-                Mati.init(reactContext, clientId);
+                matiButton = new MatiButton(getActivity(), null);
+                matiButton.setParams(clientId,
+                        flowId,
+                        "Default flow",
+                        convertToMetadata(metadata));
                 reactContext.addActivityEventListener(MatiGlobalIdSdkModule.this);
-                MatiLoginManager.getInstance().registerCallback(mCallbackManager, MatiGlobalIdSdkModule.this);
             }
         });
     }
 
-    @ReactMethod
-    public void setMatiCallback(Callback callback) {
-        mOnCallback = callback;
-    }
-
-    @ReactMethod
-    public void metadata(final ReadableMap metadata)
-    {
-        reactContext.runOnUiQueueThread(new Runnable() {
-            @Override
-            public void run() {
-                HashMap<String, Object> metadataHashMap = metadata.toHashMap();
-                Metadata.Builder metadataBuilder = new Metadata.Builder();
-                for (Map.Entry<String,Object> entry : metadataHashMap.entrySet())
-                {
-                    metadataBuilder.with(entry.getKey(), entry.getValue());
-                }
-                Mati.getInstance().setMetadata(metadataBuilder.build());
-            }
-        });
+    private AppCompatActivity getActivity() {
+        return (AppCompatActivity)getReactApplicationContext().getCurrentActivity();
     }
 
     @Override
     public void onActivityResult(Activity activity, int requestCode, int resultCode, Intent data) {
-        mCallbackManager.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == KYCActivity.REQUEST_CODE) {
+            if(resultCode == RESULT_OK) {
+                sendEvent(reactContext, "verificationSuccess", null);
+            } else {
+                sendEvent(reactContext, "verificationCanceled", null);
+            }
+        }
     }
 
     @Override
@@ -91,24 +71,41 @@ public class MatiGlobalIdSdkModule extends ReactContextBaseJavaModule implements
 
     }
 
-    @Override
-    public void onSuccess(LoginResult pLoginResult) {
-        if(mOnCallback != null){
-            mOnCallback.invoke(pLoginResult.isSuccess(), pLoginResult.getIdentityId());
+    private Metadata convertToMetadata(ReadableMap data) {
+        if (data != null) {
+            HashMap<String, Object> metadataHashMap = data.toHashMap();
+            Metadata.Builder metadataBuilder = new Metadata.Builder();
+            for (Map.Entry<String, Object> entry : metadataHashMap.entrySet()) {
+                metadataBuilder.with(entry.getKey(), entry.getValue());
+            }
+            return metadataBuilder.build();
+        } else {
+            return  null;
         }
     }
 
-    @Override
-    public void onCancel() {
-        if(mOnCallback != null){
-            mOnCallback.invoke(false, "Cancel");
-        }
+    @ReactMethod
+    public void showFlow() {
+       MatiButton.State matiState = matiButton.getVm().getValue();
+       MatiButton.SuccessState matiSuccess = (MatiButton.SuccessState) matiState;
+
+       Intent intent = new Intent(reactContext, KYCActivity.class);
+       intent.putExtra("ARG_ID_TOKEN", matiSuccess.getIdToken());
+       intent.putExtra("ARG_CLIENT_ID", matiSuccess.getClientId());
+       intent.putExtra("ARG_VERIFICATION_ID", matiSuccess.getVerificationId());
+       intent.putExtra("ARG_ACCESS_TOKEN", matiSuccess.getAccessToken());
+       intent.putExtra("ARG_VOICE_TXT", matiSuccess.getVoiceDataTxt());
+       intent.putExtra("STATE_LANGUAGE_ID", matiSuccess.getIdToken());
+       getActivity().startActivityForResult(intent,KYCActivity.REQUEST_CODE);
     }
 
-    @Override
-    public void onError(LoginError pLoginError) {
-        if(mOnCallback != null) {
-            mOnCallback.invoke(false, pLoginError.getMessage());
-        }
+    private void sendEvent(ReactContext reactContext,
+                           String eventName,
+                           @Nullable WritableMap params) {
+        reactContext
+                .getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter.class)
+                .emit(eventName, params);
     }
+
 }
+
