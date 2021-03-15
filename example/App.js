@@ -1,54 +1,36 @@
 import React, {Component} from 'react';
 import {
-  StyleSheet,
+  NativeModules,
+  NativeEventEmitter,
+  Button,
   View
 } from 'react-native';
 
-
 import {
-  MatiLoginButton,
   MatiGlobalIdSdk,
 } from 'react-native-mati-global-id-sdk';
-
-const styles = StyleSheet.create({
-  matiButtonStyle: {
-    width: 300,
-    ...Platform.select({
-      ios: {
-        height: 60,
-      },
-      android: {
-        height: 40,
-      },
-    }),
-  },
-});
 
 export default class App extends Component {
   constructor() {
     super();
-    console.log('Constructor Called.');
-
-	//Init SDk
-	MatiGlobalIdSdk.init('5c94e3123451be83c17');
-
-	//Send metadata
-    MatiGlobalIdSdk.metadata({key: 'value'});
+    console.log('Constructor Called.');	
   }
 
   componentDidMount() {
 
-	//register to login callback
-    MatiGlobalIdSdk.setMatiCallback((isSuccess, identityIdOrError) => {
-      if (isSuccess) {
-        console.log(
-          'isSuccess:' + isSuccess + ' identityId:' + identityIdOrError,
-        );
-      } else {
-        console.log('isSuccess:' + isSuccess + ' error:' + identityIdOrError);
-      }
-    });
+  //set 3 params: clientId (CANNOT be null), flowId (can be null), metadata (can be null)
+  MatiGlobalIdSdk.setParams("YOUR_CLIENT_ID", "YOUR_FLOW_ID", YOUR_METADATA);
+
+  //set listening callbacks
+  const MatiVerifyResult = new NativeEventEmitter(NativeModules.MatiGlobalIdSdk)
+  MatiVerifyResult.addListener('verificationSuccess', (data) => console.log(data))
+  MatiVerifyResult.addListener('verificationCanceled', (data) => console.log(data))
   }
+
+  //call showFlow when button is clicked
+  handleMatiClickButton = () => {
+    MatiGlobalIdSdk.showFlow();
+   }
 
   //Add button to view graph
   render() {
@@ -60,8 +42,7 @@ export default class App extends Component {
           alignItems: 'center',
           backgroundColor: 'powderblue',
         }}>
-
-        <MatiLoginButton style={styles.matiButtonStyle} Text="Click Here" />
+        <Button onPress={this.handleMatiClickButton} title="Click here"/>
       </View>
     );
   }
