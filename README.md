@@ -32,8 +32,8 @@ export default class App extends Component {
 
   componentDidMount() {
 
-  //set params clientId, flowId, metadata
-  MatiGlobalIdSdk.setParams("5c94e3c401ddc6001be83c07", "5ea2c6966418ad001bb0f1ca", null);
+  //set 3 params clientId (cant be null), flowId, metadata
+  MatiGlobalIdSdk.setParams("YOUR_CLIENT_ID", "YOUR_FLOW_ID", YOUR_METADATA);
 
   //set listening callbacks
   const MatiVerifyResult = new NativeEventEmitter(NativeModules.MatiGlobalIdSdk)
