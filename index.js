@@ -1,14 +1,9 @@
-import { NativeModules } from "react-native";
-import MatiLoginButton from "./MatiLoginButton";
+import { NativeModules } from 'react-native';
 
 const { MatiGlobalIdSdk } = NativeModules;
 
 module.exports = {
-  get MatiGlobalIdSdk() {
-    return MatiGlobalIdSdk;
-  },
-  get MatiLoginButton() {
-    return MatiLoginButton;
-    //return require("./MatiLoginButton");
-  }
+	get MatiGlobalIdSdk() {
+		return MatiGlobalIdSdk;
+	}
 };
