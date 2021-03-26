@@ -12,9 +12,9 @@ import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.bridge.ReadableMap;
 import com.facebook.react.bridge.WritableMap;
 import com.facebook.react.modules.core.DeviceEventManagerModule;
-import com.matilock.mati_kyc_sdk.MatiButton;
-import com.matilock.mati_kyc_sdk.Metadata;
-import com.matilock.mati_kyc_sdk.kyc.KYCActivity;
+import com.getmati.mati_sdk.MatiButton;
+import com.getmati.mati_sdk.Metadata;
+import com.getmati.mati_sdk.kyc.KYCActivity;
 import java.util.HashMap;
 import java.util.Map;
 
