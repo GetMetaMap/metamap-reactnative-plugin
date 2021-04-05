@@ -1,5 +1,12 @@
 # Mati module for Android And IOS SDK documentation
 
+## Recommended version of React Native is 0.63.*
+
+#### Use this command to install
+react-native init MyNewApp --version 0.63.0 
+
+0.64 – doesnt support because have troubles with arm (apple)
+
 Create a new React Native project.
 Add the SDK module to your package.json by command
 
