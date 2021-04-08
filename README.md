@@ -146,5 +146,5 @@ Flipper https://github.com/facebook/react-native/issues/29984
 
 # Links to right Podfiles
 0.60+ – https://github.com/GetMati/mati-reactnative-plugin/blob/master/podexamples/Podfile_063
-1.
-2.64 – https://github.com/GetMati/mati-reactnative-plugin/blob/master/podexamples/Podfile_064
+
+0.64 – https://github.com/GetMati/mati-reactnative-plugin/blob/master/podexamples/Podfile_064
