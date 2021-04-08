@@ -59,7 +59,9 @@ public class MatiGlobalIdSdkModule extends ReactContextBaseJavaModule implements
     public void onActivityResult(Activity activity, int requestCode, int resultCode, Intent data) {
         if(requestCode == KYCActivity.REQUEST_CODE) {
             if(resultCode == RESULT_OK) {
-                sendEvent(reactContext, "verificationSuccess", null);
+                  WritableMap params = null;
+                params.putString("identityId", data.getStringExtra(KYCActivity.ARG_VERIFICATION_ID));
+                sendEvent(reactContext, "verificationSuccess", params);
             } else {
                 sendEvent(reactContext, "verificationCanceled", null);
             }
