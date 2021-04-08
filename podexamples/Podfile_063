@@ -1,0 +1,32 @@
+require_relative '../node_modules/react-native/scripts/react_native_pods'
+require_relative '../node_modules/@react-native-community/cli-platform-ios/native_modules'
+
+platform :ios, '11.4'
+
+target 'YOUR_APP_NAME' do
+  config = use_native_modules!
+
+  use_react_native!(:path => config["reactNativePath"])
+
+  target 'YOUR_APP_NAME_TESTS' do
+    inherit! :complete
+    # Pods for testing
+  end
+
+
+  # Enables Flipper.
+  #
+  # Note that if you have use_frameworks! enabled, Flipper will not work and
+  # you should disable these next few lines.
+  use_frameworks!
+
+end
+
+target 'YOUR_APP_NAME-tvOS' do
+  # Pods for eightAprilDemo-tvOS
+
+  target 'YOUR_APP_NAME-tvOSTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+end
