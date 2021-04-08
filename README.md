@@ -93,7 +93,8 @@ For voiceliveness feature please add NSMicrophoneUsageDescription
 ```
 
 # Known issue – PODFILE (x86_64 issues)
-In react native Flipper doesnt have support yet https://github.com/facebook/react-native/issues/29984 
+In react native Flipper doesnt have support yet
+
 So you have to remove it from yours project. (It is adding by default)
 
 ### If you have this error:
@@ -143,8 +144,10 @@ pod install
 
 #### More info about this issues 
 Flipper https://github.com/facebook/react-native/issues/29984 
+
 0.64 FBReactNativeSpec https://github.com/facebook/react-native/issues/31034
 
 # Links to right Podfiles
 0.60+ – https://github.com/GetMati/mati-reactnative-plugin/blob/master/podexamples/Podfile_063
-0.64 – https://github.com/GetMati/mati-reactnative-plugin/blob/master/podexamples/Podfile_064
+1.
+2.64 – https://github.com/GetMati/mati-reactnative-plugin/blob/master/podexamples/Podfile_064
