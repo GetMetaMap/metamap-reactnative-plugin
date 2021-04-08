@@ -98,9 +98,11 @@ For voiceliveness feature please add NSMicrophoneUsageDescription
 
 ### You have to make changes in Podfile:
 It's because of use_flipper in Podfile for iOS project.
+
 use_flipper!
 
 So, I was needed to indicate Flipper-Folly version with use_flipper as
+
 use_flipper!({ 'Flipper-Folly' => '2.3.0' })
 
 ### after this use commands:
