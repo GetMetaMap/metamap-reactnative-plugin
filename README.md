@@ -75,7 +75,9 @@ export default class App extends Component {
 
 ## IOS build
 
-In the IOS platform find the Podfile file. The targeted OS version should be a minimum of 11.4. Run "pod install" to fetch the project dependencies.
+In the IOS platform find the Podfile file. 
+
+### The targeted OS version should be a minimum of 11.4. Run "pod install" to fetch the project dependencies.
 
 The following permissions are needed to capture video and access the photo gallery.
 
