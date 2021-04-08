@@ -1,15 +1,12 @@
 # Mati module for Android And IOS SDK documentation
 
-## Recommended version of React Native is 0.63.*
+## Recommended version of React Native is 0.60.x +
 
 ### Use this command to install
-react-native init MyNewApp --version 0.63.0 
 
-0.64 – doesnt support because have troubles with arm (apple)
 
 ## Start
-Create a new React Native project.
-Add the SDK module to your package.json by command
+Add the Mati SDK Plugin to your project by command
 
 npm install https://github.com/MatiFace/react-native-mati-global-id-sdk.git --save
 
@@ -77,7 +74,8 @@ export default class App extends Component {
 
 In the IOS platform find the Podfile file. 
 
-### The targeted OS version should be a minimum of 11.4. Run "pod install" to fetch the project dependencies.
+### The targeted OS version should be a minimum of 11.4.
+Run "pod install" to fetch the project dependencies.
 
 The following permissions are needed to capture video and access the photo gallery.
 
@@ -94,20 +92,59 @@ For voiceliveness feature please add NSMicrophoneUsageDescription
 <string>Mati needs access to your Microphone</string>
 ```
 
-## Known issue
+# Known issue – PODFILE (x86_64 issues)
+In react native Flipper doesnt have support yet https://github.com/facebook/react-native/issues/29984 
+So you have to remove it from yours project. (It is adding by default)
+
 ### If you have this error:
-/Flipper/xplat/Flipper/FlipperRSocketResponder.cpp normal x86_64 c++ com.apple.compilers.llvm.clang.1_0.compiler
+/Flipper/xplat/Flipper/FlipperRSocketResponder.cpp normal x86_64 c++ com.apple.compilers.llvm.clang.1_0.compiler or other x86_64 issues
 
 ### You have to make changes in Podfile:
 It's because of use_flipper in Podfile for iOS project.
 
-use_flipper!
+#### So you have to remove it, replace this:
 
-So, I was needed to indicate Flipper-Folly version with use_flipper as
+use_flipper! or  use_flipper!()
 
-use_flipper!({ 'Flipper-Folly' => '2.3.0' })
+#### to this:
 
-### after this use commands:
+use_frameworks!
+
+### If you are use lates react native 0.64 add this lines to the end of Podfile
+
+##### replace this:
+  post_install do |installer|
+    react_native_post_install(installer)
+  end
+  
+#### to this:
+
+post_install do |installer|
+  react_native_post_install(installer)
+  
+  installer.pods_project.targets.each do |target|
+    target.build_configurations.each do |config|
+      config.build_settings['BUILD_LIBRARY_FOR_DISTRIBUTION'] = 'YES'
+    end
+    
+    if (target.name&.eql?('FBReactNativeSpec'))
+      target.build_phases.each do |build_phase|
+        if (build_phase.respond_to?(:name) && build_phase.name.eql?('[CP-User] Generate Specs'))
+          target.build_phases.move(build_phase, 0)
+        end
+      end
+    end
+  end
+end
+
+## after this use commands:
 pod clean 
 pod install
 
+#### More info about this issues 
+Flipper https://github.com/facebook/react-native/issues/29984 
+0.64 FBReactNativeSpec https://github.com/facebook/react-native/issues/31034
+
+# Links to right Podfiles
+0.60+ – https://github.com/GetMati/mati-reactnative-plugin/blob/master/podexamples/Podfile_063
+0.64 – https://github.com/GetMati/mati-reactnative-plugin/blob/master/podexamples/Podfile_064
