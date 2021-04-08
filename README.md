@@ -2,9 +2,6 @@
 
 ## Recommended version of React Native is 0.60.x +
 
-### Use this command to install
-
-
 ## Start
 Add the Mati SDK Plugin to your project by command
 
