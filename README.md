@@ -91,3 +91,19 @@ For voiceliveness feature please add NSMicrophoneUsageDescription
 <key>NSMicrophoneUsageDescription</key>
 <string>Mati needs access to your Microphone</string>
 ```
+
+## Known issue
+### If you have this error:
+/Flipper/xplat/Flipper/FlipperRSocketResponder.cpp normal x86_64 c++ com.apple.compilers.llvm.clang.1_0.compiler
+
+### You have to make changes in Podfile:
+It's because of use_flipper in Podfile for iOS project.
+use_flipper!
+
+So, I was needed to indicate Flipper-Folly version with use_flipper as
+use_flipper!({ 'Flipper-Folly' => '2.3.0' })
+
+### after this use commands:
+pod clean 
+pod install
+
