@@ -89,7 +89,7 @@ For voiceliveness feature please add NSMicrophoneUsageDescription
 <string>Mati needs access to your Microphone</string>
 ```
 
-# Known issue – PODFILE (x86_64 issues)
+# Known issue – PODFILE (x86_64 issues) – FLIPPER
 In react native Flipper doesnt have support yet
 
 So you have to remove it from yours project. (It is adding by default)
