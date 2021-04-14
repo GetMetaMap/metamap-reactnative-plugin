@@ -2,6 +2,8 @@ package com.reactlibrary;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.util.Log;
+
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import com.facebook.react.bridge.ActivityEventListener;
@@ -88,17 +90,25 @@ public class MatiGlobalIdSdkModule extends ReactContextBaseJavaModule implements
 
     @ReactMethod
     public void showFlow() {
-       MatiButton.State matiState = matiButton.getVm().getValue();
-       MatiButton.SuccessState matiSuccess = (MatiButton.SuccessState) matiState;
+        if (matiButton.getVm().getValue() != null) {
+            MatiButton.State matiState = matiButton.getVm().getValue();
+            if (matiState instanceof MatiButton.SuccessState) {
+                MatiButton.SuccessState matiSuccess = (MatiButton.SuccessState) matiState;
 
-       Intent intent = new Intent(reactContext, KYCActivity.class);
-       intent.putExtra("ARG_ID_TOKEN", matiSuccess.getIdToken());
-       intent.putExtra("ARG_CLIENT_ID", matiSuccess.getClientId());
-       intent.putExtra("ARG_VERIFICATION_ID", matiSuccess.getVerificationId());
-       intent.putExtra("ARG_ACCESS_TOKEN", matiSuccess.getAccessToken());
-       intent.putExtra("ARG_VOICE_TXT", matiSuccess.getVoiceDataTxt());
-       intent.putExtra("STATE_LANGUAGE_ID", matiSuccess.getIdToken());
-       getActivity().startActivityForResult(intent,KYCActivity.REQUEST_CODE);
+                Intent intent = new Intent(reactContext, KYCActivity.class);
+                intent.putExtra("ARG_ID_TOKEN", matiSuccess.getIdToken());
+                intent.putExtra("ARG_CLIENT_ID", matiSuccess.getClientId());
+                intent.putExtra("ARG_VERIFICATION_ID", matiSuccess.getVerificationId());
+                intent.putExtra("ARG_ACCESS_TOKEN", matiSuccess.getAccessToken());
+                intent.putExtra("ARG_VOICE_TXT", matiSuccess.getVoiceDataTxt());
+                intent.putExtra("STATE_LANGUAGE_ID", matiSuccess.getIdToken());
+                getActivity().startActivityForResult(intent, KYCActivity.REQUEST_CODE);
+            } else {
+                Log.e("Loading error", "Not ready yet, loading...");
+            }
+        } else {
+            Log.e("Loading error", "Please check yours Mati client ID or internet connection");
+        }
     }
 
     private void sendEvent(ReactContext reactContext,
