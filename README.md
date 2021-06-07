@@ -68,6 +68,9 @@ export default class App extends Component {
 
 
 ```
+#EXAMPLE
+Please check examples here:
+https://github.com/GetMati/mati-mobile-examples/tree/main/reactNativeDemoApp
 
 ## IOS build
 
@@ -147,6 +150,6 @@ Flipper https://github.com/facebook/react-native/issues/29984
 0.64 FBReactNativeSpec https://github.com/facebook/react-native/issues/31034
 
 # Links to right Podfiles
-0.60+ – https://github.com/GetMati/mati-reactnative-plugin/blob/master/podexamples/Podfile_063
+0.60+ – https://github.com/GetMati/mati-mobile-examples/blob/main/reactnative-podexamples/Podfile_063
 
-0.64 – https://github.com/GetMati/mati-reactnative-plugin/blob/master/podexamples/Podfile_064
+0.64 – https://github.com/GetMati/mati-mobile-examples/blob/main/reactnative-podexamples/Podfile_064
