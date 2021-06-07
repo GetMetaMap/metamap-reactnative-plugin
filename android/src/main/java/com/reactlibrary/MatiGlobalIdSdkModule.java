@@ -17,9 +17,10 @@ import com.facebook.react.bridge.WritableMap;
 import com.facebook.react.modules.core.DeviceEventManagerModule;
 import com.getmati.mati_sdk.MatiButton;
 import com.getmati.mati_sdk.Metadata;
-import com.getmati.mati_sdk.kyc.KYCActivity;
+import com.getmati.mati_sdk.MatiSdk;
 import java.util.HashMap;
 import java.util.Map;
+
 
 import static android.app.Activity.RESULT_OK;
 
@@ -60,10 +61,10 @@ public class MatiGlobalIdSdkModule extends ReactContextBaseJavaModule implements
 
     @Override
     public void onActivityResult(Activity activity, int requestCode, int resultCode, Intent data) {
-        if(requestCode == KYCActivity.REQUEST_CODE) {
+        if(requestCode == MatiSdk.REQUEST_CODE) {
             if(resultCode == RESULT_OK && data != null) {
                   WritableMap params = Arguments.createMap();
-                params.putString("identityId", data.getStringExtra(KYCActivity.ARG_VERIFICATION_ID));
+                params.putString("identityId", data.getStringExtra(MatiSdk.ARG_VERIFICATION_ID));
                sendEvent(reactContext, "verificationSuccess", params);
             } else {
                 sendEvent(reactContext, "verificationCanceled", null);
