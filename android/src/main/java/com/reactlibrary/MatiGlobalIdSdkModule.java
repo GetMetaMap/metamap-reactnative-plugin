@@ -15,9 +15,9 @@ import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.bridge.ReadableMap;
 import com.facebook.react.bridge.WritableMap;
 import com.facebook.react.modules.core.DeviceEventManagerModule;
-import com.getmati.mati_sdk.MatiButton;
 import com.getmati.mati_sdk.Metadata;
 import com.getmati.mati_sdk.MatiSdk;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -27,7 +27,6 @@ import static android.app.Activity.RESULT_OK;
 public class MatiGlobalIdSdkModule extends ReactContextBaseJavaModule implements ActivityEventListener {
 
     private final ReactApplicationContext reactContext;
-    private MatiButton matiButton;
 
     public MatiGlobalIdSdkModule(ReactApplicationContext reactContext) {
         super(reactContext);
@@ -40,23 +39,17 @@ public class MatiGlobalIdSdkModule extends ReactContextBaseJavaModule implements
     }
 
     @ReactMethod
-    public void setParams(final String clientId, @Nullable final String flowId , @Nullable final ReadableMap metadata) {
-
+    public void showFlow(final String clientId, @Nullable final String flowId , @Nullable final ReadableMap metadata) {
         reactContext.runOnUiQueueThread(new Runnable() {
             @Override
             public void run() {
-                matiButton = new MatiButton(getActivity(), null);
-                matiButton.setParams(clientId,
+                MatiSdk.INSTANCE.startFlow(getReactApplicationContext().getCurrentActivity(),
+                        clientId,
                         flowId,
-                        "Default flow",
                         convertToMetadata(metadata));
                 reactContext.addActivityEventListener(MatiGlobalIdSdkModule.this);
             }
         });
-    }
-
-    private AppCompatActivity getActivity() {
-        return (AppCompatActivity)getReactApplicationContext().getCurrentActivity();
     }
 
     @Override
@@ -87,29 +80,6 @@ public class MatiGlobalIdSdkModule extends ReactContextBaseJavaModule implements
             return metadataBuilder.build();
         } else {
             return  null;
-        }
-    }
-
-    @ReactMethod
-    public void showFlow() {
-        if (matiButton.getVm().getValue() != null) {
-            MatiButton.State matiState = matiButton.getVm().getValue();
-            if (matiState instanceof MatiButton.SuccessState) {
-                MatiButton.SuccessState matiSuccess = (MatiButton.SuccessState) matiState;
-
-                Intent intent = new Intent(reactContext, KYCActivity.class);
-                intent.putExtra("ARG_ID_TOKEN", matiSuccess.getIdToken());
-                intent.putExtra("ARG_CLIENT_ID", matiSuccess.getClientId());
-                intent.putExtra("ARG_VERIFICATION_ID", matiSuccess.getVerificationId());
-                intent.putExtra("ARG_ACCESS_TOKEN", matiSuccess.getAccessToken());
-                intent.putExtra("ARG_VOICE_TXT", matiSuccess.getVoiceDataTxt());
-                intent.putExtra("STATE_LANGUAGE_ID", matiSuccess.getIdToken());
-                getActivity().startActivityForResult(intent, KYCActivity.REQUEST_CODE);
-            } else {
-                Log.e("Loading error", "Not ready yet, loading...");
-            }
-        } else {
-            Log.e("Loading error", "Please check yours Mati client ID or internet connection");
         }
     }
 
