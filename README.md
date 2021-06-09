@@ -9,6 +9,8 @@ INSTALL: npm install https://github.com/MatiFace/react-native-mati-global-id-sdk
 
 UNINSTALL: npm uninstall react-native-mati-global-id-sdk
 
+if you reinstall plugin, pleased dont forget sync with gradle files for Android, and pod clean && pod update for iOS.
+
 ## For iOS platform please check information at end of readme
 
 ## Mati SDK initialization
