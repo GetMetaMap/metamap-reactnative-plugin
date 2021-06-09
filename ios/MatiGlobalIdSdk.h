@@ -5,6 +5,4 @@
 
 @interface MatiGlobalIdSdk : RCTEventEmitter <RCTBridgeModule, MatiButtonResultDelegate>
 
-@property (nonatomic, strong) MatiButton *matiButton;
-
 @end
