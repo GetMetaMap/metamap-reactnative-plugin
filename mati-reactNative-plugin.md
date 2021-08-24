@@ -21,7 +21,7 @@ npm install https://github.com/MatiFace/react-native-mati-global-id-sdk.git --sa
 
 #### Install for Android
 
-Sync your Gradle files
+For Android check that the `minSdkVersion` in `<YOUR_APP>/build.gradle` is &#8805;21, then sync your Gradle files
 
 
 #### Install for iOS
