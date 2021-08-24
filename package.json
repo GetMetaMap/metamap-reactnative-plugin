@@ -1,7 +1,7 @@
 {
   "name": "react-native-mati-global-id-sdk",
   "title": "React Native Mati Global Id Sdk",
-  "version": "3.1.2",
+  "version": "3.2.0",
   "description": "Mati React Native Plugin",
   "main": "index.js",
   "scripts": {
@@ -9,8 +9,8 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/github_account/react-native-mati-global-id-sdk.git",
-    "baseUrl": "https://github.com/github_account/react-native-mati-global-id-sdk"
+    "url": "git+https://github.com/GetMati/mati-reactnative-plugin.git",
+    "baseUrl": "https://github.com/GetMati/mati-reactnative-plugin"
   },
   "keywords": [
     "react-native"
