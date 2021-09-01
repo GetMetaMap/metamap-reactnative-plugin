@@ -1,16 +1,24 @@
-# Mati React Native Plugin Usage Guide
+---
+title: "React Native"
+excerpt: "Add the Mati button to your React Native app."
+slug: "mobile-sdks"
+category: 61141a8437375100442f3d20
+---
 
-This is a guide for Android and iOS SDKs for React Native versions &#8805; 0.60.x, and includes instructions for:
+# Mati React Native Usage Guide
+
+This is a guide to add Mati to Android and iOS for React Native versions 0.60.x and higher. These instructions includes:
 * [Clean installation](#install-the-react-native-plugin)
 * [Reinstallation](#reinstall-the-react-native-plugin)
 * [SDK initialization](#mati-sdk-initialization)
 
-For an example app, go to:
-https://github.com/GetMati/mati-mobile-examples/tree/main/reactNativeDemoApp
+## React Native Demo App
 
-## Install the React Native Plugin
+You can go to GitHub to download the [Mati React Native demo app](https://github.com/GetMati/mati-mobile-examples/tree/main/reactNativeDemoApp)
 
-In a terminal, use the following command to install the Mati React Native plugin:
+## Install Mati for React Native
+
+In a terminal, use the following command to install Mati for React Native:
 
 ```bash
 npm install https://github.com/MatiFace/react-native-mati-global-id-sdk.git --save
@@ -106,15 +114,15 @@ For Android check that the `minSdkVersion` in `<YOUR_APP>/build.gradle` is &#880
     </p>
     </details>
 
-## Reinstall the React Native Plugin
+## Reinstall Mati for React Native
 
-To reinstall the Mati React Native plugin, you will need to:
+To reinstall Mati for React Native, you will need to:
 
-1. Uninstall the your current version of the plugin:
+1. Uninstall the your current version of Mati:
     ```bash
     npm uninstall react-native-mati-global-id-sdk
     ```
-1. Install the latest version of the plugin:
+1. Install the latest version of Mati:
     ```bash
     npm install https://github.com/MatiFace/react-native-mati-global-id-sdk.git --save
     ```
