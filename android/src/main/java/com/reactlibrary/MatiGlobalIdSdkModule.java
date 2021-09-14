@@ -77,7 +77,7 @@ public class MatiGlobalIdSdkModule extends ReactContextBaseJavaModule implements
             for (Map.Entry<String, Object> entry : metadataHashMap.entrySet()) {
                 metadataBuilder.with(entry.getKey(), entry.getValue());
             }
-            metadataBuilder.with("sdkType", "android_reactNative");
+            metadataBuilder.with("sdkType", "reactNative");
             return metadataBuilder.build();
         } else {
             return  null;

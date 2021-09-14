@@ -11,7 +11,7 @@ RCT_EXPORT_METHOD(showFlow:(NSString * _Nonnull)clientId flowId:(NSString * _Nul
 {
     dispatch_async(dispatch_get_main_queue(), ^(void){
         NSMutableDictionary *mutableDictionary = [metadata mutableCopy];     //Make the dictionary mutable to change/add
-        mutableDictionary[@"sdkType"] = @"ios_reactNative";
+        mutableDictionary[@"sdkType"] = @"reactNative";
         [Mati.shared showMatiFlowWithClientId: clientId flowId: flowId metadata: mutableDictionary];
         [MatiButtonResult shared].delegate = self;
         self->hasListeners = YES;
