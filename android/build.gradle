@@ -14,7 +14,7 @@ buildscript {
             jcenter()
         }
         dependencies {
-            classpath 'com.android.tools.build:gradle:3.9.0'
+            classpath 'com.android.tools.build:gradle:3.7.1'
         }
     }
 }
@@ -64,7 +64,7 @@ dependencies {
     // https://github.com/facebook/react-native/blob/0.61-stable/template/android/app/build.gradle#L192
     //noinspection GradleDynamicVersion
     implementation 'com.facebook.react:react-native:+'  // From node_modules
-    implementation 'com.getmati:mati-sdk:3.8.2'
+    implementation 'com.getmati:mati-sdk:9.8.9
 }
 
 def configureReactNativePom(def pom) {
