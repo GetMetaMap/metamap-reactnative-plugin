@@ -15,7 +15,7 @@ if you reinstall plugin, pleased dont forget sync with gradle files for Android,
 
 Please use yarn to install 
 1. Install SDK -  yarn add https://github.com/MatiFace/react-native-mati-global-id-sdk.git
-2. add  "plugins": "react-native-mati-global-id-sdk", on app.json file
+2. add  "plugins": ["react-native-mati-global-id-sdk"], on app.json file
 3. use expo run:ios and expo run:android, it still allow you to use Managed workflow.
 
 ## For iOS platform please check information at end of readme
