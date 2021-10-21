@@ -8,9 +8,8 @@ category: 61141a8437375100442f3d20
 # Mati React Native Usage Guide
 
 This is a guide to add Mati to Android and iOS for React Native versions 0.60.x and higher. These instructions includes:
-* [Clean installation](#install-the-react-native-plugin)
-* [Reinstallation](#reinstall-the-react-native-plugin)
-* [SDK initialization](#mati-sdk-initialization)
+* [Clean installation](#install-mati-for-react-native)
+* [Reinstallation](#reinstall-mati-for-react-native)
 
 ## React Native Demo App
 
@@ -35,26 +34,26 @@ For Android check that the `minSdkVersion` in `<YOUR_APP>/build.gradle` is &#880
 #### Install for iOS
 
 1. From your podfile directory, run the following command to fetch the project dependencies:
-    ```bash
-    pod install
-    ```
+   ```bash
+   pod install
+   ```
 1. Add the following to your `info.plist` file to grant camera, microphone, and photo gallery access:
 
-    ```xml
-    <key>NSCameraUsageDescription</key>
-    <string>Mati needs access to your Camera</string>
-    <key>NSPhotoLibraryUsageDescription</key>
-    <string>Mati needs access to your media library</string>
-    <key>NSMicrophoneUsageDescription</key>
-    <string>Mati needs access to your Microphone</string>
-    ```
-    _**Note**_ The voiceliveness feature requires microphone access (`NSMicrophoneUsageDescription`).
+   ```xml
+   <key>NSCameraUsageDescription</key>
+   <string>Mati needs access to your Camera</string>
+   <key>NSPhotoLibraryUsageDescription</key>
+   <string>Mati needs access to your media library</string>
+   <key>NSMicrophoneUsageDescription</key>
+   <string>Mati needs access to your Microphone</string>
+   ```
+   _**Note**_ The voiceliveness feature requires microphone access (`NSMicrophoneUsageDescription`).
 <br/>
 
 
-    _**IMPORTANT**_ KNOWN ISSUE
-    <details><summary><b>Click here to learn more about the podfile x86_64 issues for Flipper</b></summary>
-    <p>
+  _**IMPORTANT**_ KNOWN ISSUE
+  <details><summary><b>Click here to learn more about the podfile x86_64 issues for Flipper</b></summary>
+  <p>
 
     You may see an x86_64 error similar to the following:
       ```
@@ -111,14 +110,14 @@ For Android check that the `minSdkVersion` in `<YOUR_APP>/build.gradle` is &#880
     * [Podfile Version 0.60+](https://github.com/GetMati/mati-mobile-examples/blob/main/reactnative-podexamples/Podfile_063)
     * [Podfile Version 0.64](https://github.com/GetMati/mati-mobile-examples/blob/main/reactnative-podexamples/Podfile_064)
 
-    </p>
-    </details>
+  </p>
+  </details>
 
 ## Reinstall Mati for React Native
 
 To reinstall Mati for React Native, you will need to:
 
-1. Uninstall the your current version of Mati:
+1. Uninstall your current version of Mati:
     ```bash
     npm uninstall react-native-mati-global-id-sdk
     ```
