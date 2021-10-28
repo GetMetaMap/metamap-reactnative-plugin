@@ -24,12 +24,26 @@ In a terminal, use the following command to install Mati for React Native:
 npm install https://github.com/MatiFace/react-native-mati-global-id-sdk.git --save
 ```
 
-## For EXPO Managed workflow please use this
+## EXPO Managed Workflow
 
-Please use yarn to install 
-1. Install SDK -  yarn add https://github.com/MatiFace/react-native-mati-global-id-sdk.git
-2. add  "plugins": ["react-native-mati-global-id-sdk"], on app.json file
-3. use expo run:ios and expo run:android, it still allow you to use Managed workflow.
+The following instructions installs and add Expo to manage your workflow, and assumes you already have `[yarn](https://classic.yarnpkg.com/lang/en/docs/install/)` installed on your system:
+1. Install the SDK:
+	```bash
+	yarn add https://github.com/MatiFace/react-native-mati-global-id-sdk.git
+	```
+2. Add the followling line to your `app.json` file:
+	```json
+	"plugins": ["react-native-mati-global-id-sdk"]
+	```
+3. Run EXPO for your platform:
+	For iOS:
+	```bash
+	expo run:ios
+	```
+	For Android:
+	```bash
+	expo run:android
+	```
 
 
 ### Platform Installation
@@ -61,67 +75,68 @@ For Android check that the `minSdkVersion` in `<YOUR_APP>/build.gradle` is &#880
 <br/>
 
 
-    _**IMPORTANT**_ KNOWN ISSUE
-    <details><summary><b>Click here to learn more about the podfile x86_64 issues for Flipper</b></summary>
-    <p>
+   _**IMPORTANT**_ KNOWN ISSUE
+   <details><summary><b>Click here to learn more about the podfile x86_64 issues for Flipper</b></summary>
+   <p>
 
-    You may see an x86_64 error similar to the following:
-      ```
-    /Flipper/xplat/Flipper/FlipperRSocketResponder.cpp normal x86_64 c++ com.apple.compilers.llvm.clang.1_0.compiler
+   You may see an x86_64 error similar to the following:
+	   
+   ```
+   /Flipper/xplat/Flipper/FlipperRSocketResponder.cpp normal x86_64 c++ com.apple.compilers.llvm.clang.1_0.compiler
+   ```
+   This error is because React Native does not support Flipper (included by default), so you must remove Flipper.
+
+   ##### Remove Flipper
+
+   1. In your podfile:
+      * Replace
+          `use_flipper!` or `use-flipper!()`
+          with
+          `use_frameworks!`
+
+      * For React Native v0.64+ replace:
+        ```ruby
+         post_install do |installer|
+          react_native_post_install(installer)
+         end
+         ```
+         with
+         ```ruby
+         post_install do |installer|
+          react_native_post_install(installer)
+
+           installer.pods_project.targets.each do |target|
+             target.build_configurations.each do |config|
+               config.build_settings['BUILD_LIBRARY_FOR_DISTRIBUTION'] = 'YES'
+             end
+
+             if (target.name&.eql?('FBReactNativeSpec'))
+               target.build_phases.each do |build_phase|
+                 if (build_phase.respond_to?(:name) && build_phase.name.eql?('[CP-User] Generate Specs'))
+                   target.build_phases.move(build_phase, 0)
+                 end
+               end
+             end
+           end
+         end
+         ```
+
+   1. Then run the following commands in your terminal:
+    ```bash
+    pod clean
+    pod install
     ```
-    This error is because React Native does not support Flipper (included by default), so you must remove Flipper.
 
-    ##### Remove Flipper
+ ##### Learn More About the Issue
+ * Flipper https://github.com/facebook/react-native/issues/29984
+ * 0.64 FBReactNativeSpec https://github.com/facebook/react-native/issues/31034
 
-    1. In your podfile:
-        * Replace
-            `use_flipper!` or `use-flipper!()`
-            with
-            `use_frameworks!`
+ ##### Example Mati Podfiles on GitHub
+ * [Podfile Version 0.60+](https://github.com/GetMati/mati-mobile-examples/blob/main/reactnative-podexamples/Podfile_063)
+ * [Podfile Version 0.64](https://github.com/GetMati/mati-mobile-examples/blob/main/reactnative-podexamples/Podfile_064)
 
-        * For React Native v0.64+ replace:
-            ```ruby
-            post_install do |installer|
-              react_native_post_install(installer)
-            end
-            ```
-            with
-            ```ruby
-            post_install do |installer|
-              react_native_post_install(installer)
-
-              installer.pods_project.targets.each do |target|
-                target.build_configurations.each do |config|
-                  config.build_settings['BUILD_LIBRARY_FOR_DISTRIBUTION'] = 'YES'
-                end
-
-                if (target.name&.eql?('FBReactNativeSpec'))
-                  target.build_phases.each do |build_phase|
-                    if (build_phase.respond_to?(:name) && build_phase.name.eql?('[CP-User] Generate Specs'))
-                      target.build_phases.move(build_phase, 0)
-                    end
-                  end
-                end
-              end
-            end
-            ```
-
-    1. Then run the following commands in your terminal:
-        ```bash
-        pod clean
-        pod install
-        ```
-
-    ##### Learn More About the Issue
-    * Flipper https://github.com/facebook/react-native/issues/29984
-    * 0.64 FBReactNativeSpec https://github.com/facebook/react-native/issues/31034
-
-    ##### Example Mati Podfiles on GitHub
-    * [Podfile Version 0.60+](https://github.com/GetMati/mati-mobile-examples/blob/main/reactnative-podexamples/Podfile_063)
-    * [Podfile Version 0.64](https://github.com/GetMati/mati-mobile-examples/blob/main/reactnative-podexamples/Podfile_064)
-
-    </p>
-    </details>
+   </p>
+   </details>
 
 ## Reinstall Mati for React Native
 
