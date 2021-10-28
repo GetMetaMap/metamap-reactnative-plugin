@@ -3,6 +3,7 @@ title: "React Native"
 excerpt: "Add the Mati button to your React Native app."
 slug: "mobile-sdks"
 category: 61141a8437375100442f3d20
+hidden: true
 ---
 
 # Mati React Native Usage Guide
