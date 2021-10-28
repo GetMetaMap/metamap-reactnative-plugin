@@ -23,6 +23,15 @@ In a terminal, use the following command to install Mati for React Native:
 ```bash
 npm install https://github.com/MatiFace/react-native-mati-global-id-sdk.git --save
 ```
+
+## For EXPO Managed workflow please use this
+
+Please use yarn to install 
+1. Install SDK -  yarn add https://github.com/MatiFace/react-native-mati-global-id-sdk.git
+2. add  "plugins": ["react-native-mati-global-id-sdk"], on app.json file
+3. use expo run:ios and expo run:android, it still allow you to use Managed workflow.
+
+
 ### Platform Installation
 * [Install for Android](#install-for-android)
 * [Install for iOS](#install-for-ios)
