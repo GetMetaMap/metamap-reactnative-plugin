@@ -3,14 +3,14 @@ title: "React Native"
 excerpt: "Add the Mati button to your React Native app."
 slug: "mobile-sdks"
 category: 61141a8437375100442f3d20
+hidden: true
 ---
 
 # Mati React Native Usage Guide
 
 This is a guide to add Mati to Android and iOS for React Native versions 0.60.x and higher. These instructions includes:
-* [Clean installation](#install-the-react-native-plugin)
-* [Reinstallation](#reinstall-the-react-native-plugin)
-* [SDK initialization](#mati-sdk-initialization)
+* [Clean installation](#install-mati-for-react-native)
+* [Reinstallation](#reinstall-mati-for-react-native)
 
 ## React Native Demo App
 
@@ -58,22 +58,21 @@ For Android check that the `minSdkVersion` in `<YOUR_APP>/build.gradle` is &#880
 #### Install for iOS
 
 1. From your podfile directory, run the following command to fetch the project dependencies:
-    ```bash
-    pod install
-    ```
+   ```bash
+   pod install
+   ```
 1. Add the following to your `info.plist` file to grant camera, microphone, and photo gallery access:
 
-    ```xml
-    <key>NSCameraUsageDescription</key>
-    <string>Mati needs access to your Camera</string>
-    <key>NSPhotoLibraryUsageDescription</key>
-    <string>Mati needs access to your media library</string>
-    <key>NSMicrophoneUsageDescription</key>
-    <string>Mati needs access to your Microphone</string>
-    ```
-    _**Note**_ The voiceliveness feature requires microphone access (`NSMicrophoneUsageDescription`).
+   ```xml
+   <key>NSCameraUsageDescription</key>
+   <string>Mati needs access to your Camera</string>
+   <key>NSPhotoLibraryUsageDescription</key>
+   <string>Mati needs access to your media library</string>
+   <key>NSMicrophoneUsageDescription</key>
+   <string>Mati needs access to your Microphone</string>
+   ```
+   _**Note**_ The voiceliveness feature requires microphone access (`NSMicrophoneUsageDescription`).
 <br/>
-
 
    _**IMPORTANT**_ KNOWN ISSUE
    <details><summary><b>Click here to learn more about the podfile x86_64 issues for Flipper</b></summary>
@@ -137,12 +136,74 @@ For Android check that the `minSdkVersion` in `<YOUR_APP>/build.gradle` is &#880
 
    </p>
    </details>
+=======
+  _**IMPORTANT**_ KNOWN ISSUE
+  <details><summary><b>Click here to learn more about the podfile x86_64 issues for Flipper</b></summary>
+  <p>
+
+    You may see an x86_64 error similar to the following:
+      ```
+    /Flipper/xplat/Flipper/FlipperRSocketResponder.cpp normal x86_64 c++ com.apple.compilers.llvm.clang.1_0.compiler
+    ```
+    This error is because React Native does not support Flipper (included by default), so you must remove Flipper.
+
+    ##### Remove Flipper
+
+    1. In your podfile:
+        * Replace
+            `use_flipper!` or `use-flipper!()`
+            with
+            `use_frameworks!`
+
+        * For React Native v0.64+ replace:
+            ```ruby
+            post_install do |installer|
+              react_native_post_install(installer)
+            end
+            ```
+            with
+            ```ruby
+            post_install do |installer|
+              react_native_post_install(installer)
+
+              installer.pods_project.targets.each do |target|
+                target.build_configurations.each do |config|
+                  config.build_settings['BUILD_LIBRARY_FOR_DISTRIBUTION'] = 'YES'
+                end
+
+                if (target.name&.eql?('FBReactNativeSpec'))
+                  target.build_phases.each do |build_phase|
+                    if (build_phase.respond_to?(:name) && build_phase.name.eql?('[CP-User] Generate Specs'))
+                      target.build_phases.move(build_phase, 0)
+                    end
+                  end
+                end
+              end
+            end
+            ```
+
+    1. Then run the following commands in your terminal:
+        ```bash
+        pod clean
+        pod install
+        ```
+
+    ##### Learn More About the Issue
+    * Flipper https://github.com/facebook/react-native/issues/29984
+    * 0.64 FBReactNativeSpec https://github.com/facebook/react-native/issues/31034
+
+    ##### Example Mati Podfiles on GitHub
+    * [Podfile Version 0.60+](https://github.com/GetMati/mati-mobile-examples/blob/main/reactnative-podexamples/Podfile_063)
+    * [Podfile Version 0.64](https://github.com/GetMati/mati-mobile-examples/blob/main/reactnative-podexamples/Podfile_064)
+
+  </p>
+  </details>
 
 ## Reinstall Mati for React Native
 
 To reinstall Mati for React Native, you will need to:
 
-1. Uninstall the your current version of Mati:
+1. Uninstall your current version of Mati:
     ```bash
     npm uninstall react-native-mati-global-id-sdk
     ```
