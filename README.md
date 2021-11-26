@@ -78,7 +78,7 @@ https://github.com/GetMati/mati-mobile-examples/tree/main/reactNativeDemoApp
 
 In the IOS platform find the Podfile file. 
 
-### The targeted OS version should be a minimum of 11.4.
+### The targeted OS version should be a minimum of 12+.
 Run "pod install" to fetch the project dependencies.
 
 The following permissions are needed to capture video and access the photo gallery.
