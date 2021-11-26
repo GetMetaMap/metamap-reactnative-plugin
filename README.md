@@ -5,7 +5,7 @@
 ## Start
 Add the Mati SDK Plugin to your project by command
 
-INSTALL: npm install https://github.com/MatiFace/react-native-mati-global-id-sdk.git --save
+INSTALL RN: npm install https://github.com/MatiFace/react-native-mati-global-id-sdk.git#react-native --save
 
 UNINSTALL: npm uninstall react-native-mati-global-id-sdk
 
