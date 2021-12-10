@@ -1,23 +1,23 @@
 ---
 title: "React Native"
-excerpt: "Add the Mati button to your React Native app."
+excerpt: "Add the Metamap button to your React Native app."
 slug: "mobile-sdks"
 category: 61141a8437375100442f3d20
 ---
 
-# Mati React Native Usage Guide
+# Metamap React Native Usage Guide
 
-This is a guide to add Mati to Android and iOS for React Native versions 0.60.x and higher. These instructions includes:
+This is a guide to add Metamap to Android and iOS for React Native versions 0.60.x and higher. These instructions includes:
 * [Clean installation](#install-mati-for-react-native)
 * [Reinstallation](#reinstall-mati-for-react-native)
 
 ## React Native Demo App
 
-You can go to GitHub to download the [Mati React Native demo app](https://github.com/GetMati/mati-mobile-examples/tree/main/reactNativeDemoApp)
+You can go to GitHub to download the [Metamap React Native demo app](https://github.com/GetMati/mati-mobile-examples/tree/main/reactNativeDemoApp)
 
-## Install Mati for React Native
+## Install Metamap for React Native
 
-In a terminal, use the following command to install Mati for React Native:
+In a terminal, use the following command to install Metamap for React Native:
 
 ```bash
 npm install https://github.com/MatiFace/react-native-mati-global-id-sdk.git --save
@@ -106,22 +106,22 @@ For Android check that the `minSdkVersion` in `<YOUR_APP>/build.gradle` is &#880
     * Flipper https://github.com/facebook/react-native/issues/29984
     * 0.64 FBReactNativeSpec https://github.com/facebook/react-native/issues/31034
 
-    ##### Example Mati Podfiles on GitHub
+    ##### Example Metamap Podfiles on GitHub
     * [Podfile Version 0.60+](https://github.com/GetMati/mati-mobile-examples/blob/main/reactnative-podexamples/Podfile_063)
     * [Podfile Version 0.64](https://github.com/GetMati/mati-mobile-examples/blob/main/reactnative-podexamples/Podfile_064)
 
   </p>
   </details>
 
-## Reinstall Mati for React Native
+## Reinstall Metamap for React Native
 
-To reinstall Mati for React Native, you will need to:
+To reinstall Metamap for React Native, you will need to:
 
-1. Uninstall your current version of Mati:
+1. Uninstall your current version of Metamap:
     ```bash
     npm uninstall react-native-mati-global-id-sdk
     ```
-1. Install the latest version of Mati:
+1. Install the latest version of Metamap:
     ```bash
     npm install https://github.com/MatiFace/react-native-mati-global-id-sdk.git --save
     ```
@@ -132,7 +132,7 @@ To reinstall Mati for React Native, you will need to:
       pod clean && pod update
       ```
 
-## Example Mati React Native Implementation
+## Example Metamap React Native Implementation
 
 The following is a example component.
 
