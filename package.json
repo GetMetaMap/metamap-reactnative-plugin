@@ -28,7 +28,7 @@
   "licenseFilename": "LICENSE",
   "readmeFilename": "README.md",
   "dependencies": {
-    "react-scripts": "^4.0.3"
+    "react-scripts": "^5.0.0"
   },
   "devDependencies": {
     "expo-module-scripts": "^2.0.0"
