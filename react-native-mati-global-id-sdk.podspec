@@ -13,7 +13,7 @@ Pod::Spec.new do |s|
   s.license      = "MIT"
   # s.license    = { :type => "MIT", :file => "FILE_LICENSE" }
   s.authors      = { "Andrey Posnov" => "andrey.posnov@mati.io" }
-  s.platforms    = { :ios => "11.4" }
+  s.platforms    = { :ios => "12.0" }
   s.source       = { :git => "https://github.com/github_account/react-native-mati-global-id-sdk.git", :tag => "#{s.version}" }
 
   s.source_files = "ios/**/*.{h,m,swift}"

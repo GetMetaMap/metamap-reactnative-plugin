@@ -1,7 +1,7 @@
 {
   "name": "react-native-mati-global-id-sdk",
   "title": "React Native Mati Global Id Sdk",
-  "version": "3.3.10",
+  "version": "3.4.0",
   "description": "Mati React Native Plugin",
   "main": "index.js",
   "scripts": {
