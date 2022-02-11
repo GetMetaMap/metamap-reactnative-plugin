@@ -1,6 +1,6 @@
 # Mati module for Android And IOS SDK documentation
 
-## Recommended version of React Native is 0.60.x +
+## Support version of React Native is 0.66.x +
 
 ## Start
 Add the Mati SDK Plugin to your project by command
@@ -95,56 +95,6 @@ For voiceliveness feature please add NSMicrophoneUsageDescription
 <key>NSMicrophoneUsageDescription</key>
 <string>Mati needs access to your Microphone</string>
 ```
-
-# Known issue – PODFILE (x86_64 issues) – FLIPPER
-In react native Flipper doesnt have support yet
-
-So you have to remove it from yours project. (It is adding by default)
-
-### If you have this error:
-/Flipper/xplat/Flipper/FlipperRSocketResponder.cpp normal x86_64 c++ com.apple.compilers.llvm.clang.1_0.compiler or other x86_64 issues
-
-### You have to make changes in Podfile:
-It's because of use_flipper in Podfile for iOS project.
-
-#### So you have to remove it, replace this:
-
-use_flipper! or  use_flipper!()
-
-#### to this:
-
-use_frameworks!
-
-### If you are use lates react native 0.64 add this lines to the end of Podfile
-
-##### replace this:
-  post_install do |installer|
-    react_native_post_install(installer)
-  end
-  
-#### to this:
-
-post_install do |installer|
-  react_native_post_install(installer)
-  
-  installer.pods_project.targets.each do |target|
-    target.build_configurations.each do |config|
-      config.build_settings['BUILD_LIBRARY_FOR_DISTRIBUTION'] = 'YES'
-    end
-    
-    if (target.name&.eql?('FBReactNativeSpec'))
-      target.build_phases.each do |build_phase|
-        if (build_phase.respond_to?(:name) && build_phase.name.eql?('[CP-User] Generate Specs'))
-          target.build_phases.move(build_phase, 0)
-        end
-      end
-    end
-  end
-end
-
-## after this use commands:
-pod clean 
-pod install
 
 #### More info about this issues 
 Flipper https://github.com/facebook/react-native/issues/29984 
