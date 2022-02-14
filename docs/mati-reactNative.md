@@ -28,7 +28,7 @@ npm install https://github.com/MatiFace/react-native-mati-global-id-sdk.git --sa
 The following instructions installs and add Expo to manage your workflow, and assumes you already have `[yarn](https://classic.yarnpkg.com/lang/en/docs/install/)` installed on your system:
 1. Install the SDK:
 	```bash
-	yarn add https://github.com/MatiFace/react-native-mati-global-id-sdk.git
+	npm i react-native-mati-global-id-sdk
 	```
 2. Add the followling line to your `app.json` file:
 	```json

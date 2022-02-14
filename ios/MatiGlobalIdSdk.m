@@ -20,7 +20,7 @@ RCT_EXPORT_METHOD(showFlow:(NSString * _Nonnull)clientId flowId:(NSString * _Nul
 
 - (void)verificationSuccessWithIdentityId:(NSString *)identityId verificationID:(nullable NSString *)verificationID {
     if (hasListeners) {
-        [self sendEventWithName:@"verificationSuccess" body:@{@“With Identity Id”: identityId, @“With Verification Id”: verificationID}];
+        [self sendEventWithName:@"verificationSuccess" body:@{@"With Identity Id": identityId, @"With Verification Id": verificationID}];
     }
 }
 
