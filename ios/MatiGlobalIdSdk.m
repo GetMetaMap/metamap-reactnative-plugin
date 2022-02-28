@@ -18,7 +18,7 @@ RCT_EXPORT_METHOD(showFlow:(NSString * _Nonnull)clientId flowId:(NSString * _Nul
 
 -(NSArray<NSString *> *)supportedEvents { return @[@"verificationSuccess", @"verificationCanceled"]; }
 
-- (void)verificationSuccessWithIdentityId:(NSString *)identityId verificationID:(nullable NSString *)verificationID {
+- (void)verificationSuccess:(NSString *)identityId verificationID:(nullable NSString *)verificationID {
     if (hasListeners) {
         [self sendEventWithName:@"verificationSuccess" body:@{@"With Identity Id": identityId, @"With Verification Id": verificationID}];
     }
