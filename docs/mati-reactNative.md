@@ -159,7 +159,7 @@ To reinstall Mati for React Native, you will need to:
 
 ## Example Mati React Native Implementation
 
-The following is a example component.
+The following is an example of the class Component.
 
 ```ruby
 import React, {Component} from 'react';
@@ -211,6 +211,51 @@ export default class App extends Component {
     );
   }
 }
+
+
+The following is an example of the Function Component.
+
+import React, {Component, useEffect} from 'react';
+import {
+  NativeModules,
+  NativeEventEmitter,
+  Button,
+  View
+} from 'react-native';
+
+import {
+  MatiGlobalIdSdk,
+} from 'react-native-mati-global-id-sdk';
+
+
+function App(props) {
+
+    useEffect(() => {
+     	const MatiVerifyResult = new NativeEventEmitter(NativeModules.MatiGlobalIdSdk)
+     	MatiVerifyResult.addListener('verificationSuccess', (data) => console.log(data))
+     	MatiVerifyResult.addListener('verificationCanceled', (data) => console.log(data))
+    })
+
+    const handleMatiClickButton = (props) => {
+
+            //set 3 params clientId (cant be null), flowId, metadata
+         var yourMetadata = { param1: "value1", param2: "value2" }
+       	 MatiGlobalIdSdk.showFlow("610b96fb7cc893001b135505", "611101668083a1001b13cc80", yourMetadata);
+      }
+
+    return (
+          <View
+            style={{
+              flex: 1,
+              justifyContent: 'center',
+              alignItems: 'center',
+              backgroundColor: 'powderblue',
+            }}>
+            <Button onPress = {() => handleMatiClickButton()}  title="Click here"/>
+          </View>
+        );
+}
+export default App;
 
 
 ```
