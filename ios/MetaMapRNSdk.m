@@ -1,7 +1,7 @@
-#import "MatiGlobalIdSdk.h"
+#import "MetaMapRNSdk.h"
 
 
-@implementation MatiGlobalIdSdk {
+@implementation MetaMapRNSdk {
     bool hasListeners;
 }
 

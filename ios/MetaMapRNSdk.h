@@ -3,6 +3,6 @@
 
 #import <MetaMapSDK/MetaMapSDK.h>
 
-@interface MatiGlobalIdSdk : RCTEventEmitter <RCTBridgeModule, MetaMapButtonResultDelegate>
+@interface MetaMapRNSdk : RCTEventEmitter <RCTBridgeModule, MetaMapButtonResultDelegate>
 
 @end

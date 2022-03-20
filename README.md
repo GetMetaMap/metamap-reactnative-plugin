@@ -27,7 +27,7 @@ import {
 } from 'react-native';
 
 import {
-  MatiGlobalIdSdk,
+  MetaMapRNSdk,
 } from 'react-native-mati-global-id-sdk';
 
 export default class App extends Component {
@@ -38,7 +38,7 @@ export default class App extends Component {
 
   componentDidMount() {
 	 //set listening callbacks
-  	const MatiVerifyResult = new NativeEventEmitter(NativeModules.MatiGlobalIdSdk)
+  	const MatiVerifyResult = new NativeEventEmitter(NativeModules.MetaMapRNSdk)
  	 MatiVerifyResult.addListener('verificationSuccess', (data) => console.log(data))
  	 MatiVerifyResult.addListener('verificationCanceled', (data) => console.log(data))
   }
@@ -49,7 +49,7 @@ export default class App extends Component {
 	 //set 3 params clientId (cant be null), flowId, metadata
   	  var yourMetadata = { param1: "value1", param2: "value2" }
 
-   	 MatiGlobalIdSdk.showFlow("YOUR_CLIENT_ID", "YOUR_FLOW_ID", yourMetadata);
+   	 MetaMapRNSdk.showFlow("YOUR_CLIENT_ID", "YOUR_FLOW_ID", yourMetadata);
   }
 
   //Add button to view graph
