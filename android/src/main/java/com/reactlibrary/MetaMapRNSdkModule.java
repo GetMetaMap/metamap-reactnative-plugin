@@ -15,8 +15,8 @@ import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.bridge.ReadableMap;
 import com.facebook.react.bridge.WritableMap;
 import com.facebook.react.modules.core.DeviceEventManagerModule;
-import com.getmati.mati_sdk.Metadata;
-import com.getmati.mati_sdk.MatiSdk;
+import com.metamap.metamap_sdk.MetamapSdk;
+import com.metamap.metamap_sdk.Metadata;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -24,18 +24,18 @@ import java.util.Map;
 
 import static android.app.Activity.RESULT_OK;
 
-public class MatiGlobalIdSdkModule extends ReactContextBaseJavaModule implements ActivityEventListener {
+public class MetaMapRNSdkModule extends ReactContextBaseJavaModule implements ActivityEventListener {
 
     private final ReactApplicationContext reactContext;
 
-    public MatiGlobalIdSdkModule(ReactApplicationContext reactContext) {
+    public MetaMapRNSdkModule(ReactApplicationContext reactContext) {
         super(reactContext);
         this.reactContext = reactContext;
     }
 
     @Override
     public String getName() {
-        return "MatiGlobalIdSdk";
+        return "MetaMapRNSdk";
     }
 
     @ReactMethod
@@ -43,21 +43,22 @@ public class MatiGlobalIdSdkModule extends ReactContextBaseJavaModule implements
         reactContext.runOnUiQueueThread(new Runnable() {
             @Override
             public void run() {
-                MatiSdk.INSTANCE.startFlow(getReactApplicationContext().getCurrentActivity(),
+                MetamapSdk.INSTANCE.startFlow(getReactApplicationContext().getCurrentActivity(),
                         clientId,
                         flowId,
                         convertToMetadata(metadata));
-                reactContext.addActivityEventListener(MatiGlobalIdSdkModule.this);
+                reactContext.addActivityEventListener(MetaMapRNSdkModule.this);
             }
         });
     }
 
     @Override
     public void onActivityResult(Activity activity, int requestCode, int resultCode, Intent data) {
-        if(requestCode == MatiSdk.REQUEST_CODE) {
+        if(requestCode == MetamapSdk.DEFAULT_REQUEST_CODE) {
             if(resultCode == RESULT_OK && data != null) {
-                  WritableMap params = Arguments.createMap();
-                params.putString("identityId", data.getStringExtra(MatiSdk.ARG_VERIFICATION_ID));
+                WritableMap params = Arguments.createMap();
+                params.putString("identityId", data.getStringExtra(MetamapSdk.ARG_IDENTITY_ID));
+                params.putString("verificationId", data.getStringExtra(MetamapSdk.ARG_VERIFICATION_ID));
                sendEvent(reactContext, "verificationSuccess", params);
             } else {
                 sendEvent(reactContext, "verificationCanceled", null);

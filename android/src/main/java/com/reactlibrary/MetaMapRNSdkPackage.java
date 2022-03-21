@@ -10,14 +10,14 @@ import com.facebook.react.uimanager.ViewManager;
 
 import javax.annotation.Nonnull;
 
-public class MatiGlobalIdSdkPackage implements ReactPackage {
+public class MetaMapRNSdkPackage implements ReactPackage {
 
     @Override
     public List<NativeModule> createNativeModules(ReactApplicationContext reactContext) {
 
         List<NativeModule> modules = new ArrayList<>();
 
-        modules.add(new MatiGlobalIdSdkModule(reactContext));
+        modules.add(new MetaMapRNSdkModule(reactContext));
 
         return modules;
     }
