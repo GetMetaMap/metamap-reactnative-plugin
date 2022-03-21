@@ -5,19 +5,19 @@ slug: "react-native"
 category: 61ae8e8dba577a0010791480
 ---
 
-# Mati React Native Usage Guide
+# MetaMap React Native Usage Guide
 
-This is a guide to add Mati to Android and iOS for React Native versions 0.60.x and higher. These instructions includes:
+This is a guide to add MetaMap to Android and iOS for React Native versions 0.60.x and higher. These instructions includes:
 * [Clean installation](#install-mati-for-react-native)
 * [Reinstallation](#reinstall-mati-for-react-native)
 
 ## React Native Demo App
 
-You can go to GitHub to download the [Mati React Native demo app](https://github.com/GetMati/mati-mobile-examples/tree/main/reactNativeDemoApp)
+You can go to GitHub to download the [MetaMap React Native demo app](https://github.com/GetMati/mati-mobile-examples/tree/main/reactNativeDemoApp)
 
-## Install Mati for React Native
+## Install MetaMap for React Native
 
-In a terminal, use the following command to install Mati for React Native:
+In a terminal, use the following command to install MetaMap for React Native:
 
 ```bash
 npm install https://github.com/MatiFace/react-native-metaMap-sdk.git --save
@@ -64,11 +64,11 @@ For Android check that the `minSdkVersion` in `<YOUR_APP>/build.gradle` is &#880
 
    ```xml
    <key>NSCameraUsageDescription</key>
-   <string>Mati needs access to your Camera</string>
+   <string>MetaMap needs access to your Camera</string>
    <key>NSPhotoLibraryUsageDescription</key>
-   <string>Mati needs access to your media library</string>
+   <string>MetaMap needs access to your media library</string>
    <key>NSMicrophoneUsageDescription</key>
-   <string>Mati needs access to your Microphone</string>
+   <string>MetaMap needs access to your Microphone</string>
    ```
    _**Note**_ The voiceliveness feature requires microphone access (`NSMicrophoneUsageDescription`).
 <br/>
@@ -129,7 +129,7 @@ For Android check that the `minSdkVersion` in `<YOUR_APP>/build.gradle` is &#880
  * Flipper https://github.com/facebook/react-native/issues/29984
  * 0.64 FBReactNativeSpec https://github.com/facebook/react-native/issues/31034
 
- ##### Example Mati Podfiles on GitHub
+ ##### Example MetaMap Podfiles on GitHub
  * [Podfile Version 0.60+](https://github.com/GetMati/mati-mobile-examples/blob/main/reactnative-podexamples/Podfile_063)
  * [Podfile Version 0.64](https://github.com/GetMati/mati-mobile-examples/blob/main/reactnative-podexamples/Podfile_064)
 
@@ -191,22 +191,22 @@ For Android check that the `minSdkVersion` in `<YOUR_APP>/build.gradle` is &#880
     * Flipper https://github.com/facebook/react-native/issues/29984
     * 0.64 FBReactNativeSpec https://github.com/facebook/react-native/issues/31034
 
-    ##### Example Mati Podfiles on GitHub
+    ##### Example MetaMap Podfiles on GitHub
     * [Podfile Version 0.60+](https://github.com/GetMati/mati-mobile-examples/blob/main/reactnative-podexamples/Podfile_063)
     * [Podfile Version 0.64](https://github.com/GetMati/mati-mobile-examples/blob/main/reactnative-podexamples/Podfile_064)
 
   </p>
   </details>
 
-## Reinstall Mati for React Native
+## Reinstall MetaMap for React Native
 
-To reinstall Mati for React Native, you will need to:
+To reinstall MetaMap for React Native, you will need to:
 
-1. Uninstall your current version of Mati:
+1. Uninstall your current version of MetaMap:
     ```bash
     npm uninstall react-native-metaMap-sdk
     ```
-1. Install the latest version of Mati:
+1. Install the latest version of MetaMap:
     ```bash
     npm install https://github.com/MatiFace/react-native-metaMap-sdk.git --save
     ```
@@ -217,7 +217,7 @@ To reinstall Mati for React Native, you will need to:
       pod clean && pod update
       ```
 
-## Example Mati React Native Implementation
+## Example MetaMap React Native Implementation
 
 The following is an example of the class Component.
 
@@ -242,13 +242,13 @@ export default class App extends Component {
 
   componentDidMount() {
 	 //set listening callbacks
-  	const MatiVerifyResult = new NativeEventEmitter(NativeModules.MetaMapRNSdk)
- 	 MatiVerifyResult.addListener('verificationSuccess', (data) => console.log(data))
- 	 MatiVerifyResult.addListener('verificationCanceled', (data) => console.log(data))
+  	const MetaMapVerifyResult = new NativeEventEmitter(NativeModules.MetaMapRNSdk)
+ 	 MetaMapVerifyResult.addListener('verificationSuccess', (data) => console.log(data))
+ 	 MetaMapVerifyResult.addListener('verificationCanceled', (data) => console.log(data))
   }
 
   //call showFlow when button is clicked
-  handleMatiClickButton = () => {
+  handleMetaMapClickButton = () => {
 
 	 //set 3 params clientId (cant be null), flowId, metadata
   	  var yourMetadata = { param1: "value1", param2: "value2" }
@@ -266,15 +266,16 @@ export default class App extends Component {
           alignItems: 'center',
           backgroundColor: 'powderblue',
         }}>
-        <Button onPress={this.handleMatiClickButton} title="Click here"/>
+        <Button onPress={this.handleMetaMapClickButton} title="Click here"/>
       </View>
     );
   }
 }
-
+```
 
 The following is an example of the Function Component.
 
+```ruby
 import React, {Component, useEffect} from 'react';
 import {
   NativeModules,
@@ -291,12 +292,12 @@ import {
 function App(props) {
 
     useEffect(() => {
-     	const MatiVerifyResult = new NativeEventEmitter(NativeModules.MetaMapRNSdk)
-     	MatiVerifyResult.addListener('verificationSuccess', (data) => console.log(data))
-     	MatiVerifyResult.addListener('verificationCanceled', (data) => console.log(data))
+     	const MetaMapVerifyResult = new NativeEventEmitter(NativeModules.MetaMapRNSdk)
+     	MetaMapVerifyResult.addListener('verificationSuccess', (data) => console.log(data))
+     	MetaMapVerifyResult.addListener('verificationCanceled', (data) => console.log(data))
     })
 
-    const handleMatiClickButton = (props) => {
+    const handleMetaMapClickButton = (props) => {
 
             //set 3 params clientId (cant be null), flowId, metadata
          var yourMetadata = { param1: "value1", param2: "value2" }
@@ -311,11 +312,9 @@ function App(props) {
               alignItems: 'center',
               backgroundColor: 'powderblue',
             }}>
-            <Button onPress = {() => handleMatiClickButton()}  title="Click here"/>
+            <Button onPress = {() => handleMetaMapClickButton()}  title="Click here"/>
           </View>
         );
 }
 export default App;
-
-
 ```
