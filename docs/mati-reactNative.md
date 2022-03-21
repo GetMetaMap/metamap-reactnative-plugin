@@ -20,7 +20,7 @@ You can go to GitHub to download the [Mati React Native demo app](https://github
 In a terminal, use the following command to install Mati for React Native:
 
 ```bash
-npm install https://github.com/MatiFace/react-native-mati-global-id-sdk.git --save
+npm install https://github.com/MatiFace/react-native-metaMap-sdk.git --save
 ```
 
 ## EXPO Managed Workflow
@@ -28,11 +28,11 @@ npm install https://github.com/MatiFace/react-native-mati-global-id-sdk.git --sa
 The following instructions installs and add Expo to manage your workflow, and assumes you already have `[yarn](https://classic.yarnpkg.com/lang/en/docs/install/)` installed on your system:
 1. Install the SDK:
 	```bash
-	npm i react-native-mati-global-id-sdk
+	npm i react-native-metaMap-sdk
 	```
 2. Add the followling line to your `app.json` file:
 	```json
-	"plugins": ["react-native-mati-global-id-sdk"]
+	"plugins": ["react-native-metaMap-sdk"]
 	```
 3. Run EXPO for your platform:
 	For iOS:
@@ -204,11 +204,11 @@ To reinstall Mati for React Native, you will need to:
 
 1. Uninstall your current version of Mati:
     ```bash
-    npm uninstall react-native-mati-global-id-sdk
+    npm uninstall react-native-metaMap-sdk
     ```
 1. Install the latest version of Mati:
     ```bash
-    npm install https://github.com/MatiFace/react-native-mati-global-id-sdk.git --save
+    npm install https://github.com/MatiFace/react-native-metaMap-sdk.git --save
     ```
 1. Update your IDE files:
   * Android: Sync your Gradle files
@@ -232,7 +232,7 @@ import {
 
 import {
   MetaMapRNSdk,
-} from 'react-native-mati-global-id-sdk';
+} from 'react-native-metaMap-sdk';
 
 export default class App extends Component {
   constructor() {
@@ -285,7 +285,7 @@ import {
 
 import {
   MetaMapRNSdk,
-} from 'react-native-mati-global-id-sdk';
+} from 'react-native-metaMap-sdk';
 
 
 function App(props) {

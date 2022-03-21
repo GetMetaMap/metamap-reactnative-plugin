@@ -5,9 +5,9 @@
 ## Start
 Add the Mati SDK Plugin to your project by command
 
-INSTALL RN: npm install https://github.com/MatiFace/react-native-mati-global-id-sdk.git#react-native --save
+INSTALL RN: npm install https://github.com/MatiFace/react-native-metaMap-sdk.git#react-native --save
 
-UNINSTALL: npm uninstall react-native-mati-global-id-sdk
+UNINSTALL: npm uninstall react-native-metaMap-sdk
 
 if you reinstall plugin, pleased dont forget sync with gradle files for Android, and pod clean && pod update for iOS.
 
@@ -28,7 +28,7 @@ import {
 
 import {
   MetaMapRNSdk,
-} from 'react-native-mati-global-id-sdk';
+} from 'react-native-metaMap-sdk';
 
 export default class App extends Component {
   constructor() {
