@@ -5,22 +5,22 @@ slug: "react-native"
 category: 61ae8e8dba577a0010791480
 ---
 
-# Mati React Native Usage Guide
+# MetaMap React Native Usage Guide
 
-This is a guide to add Mati to Android and iOS for React Native versions 0.60.x and higher. These instructions includes:
+This is a guide to add MetaMap to Android and iOS for React Native versions 0.60.x and higher. These instructions includes:
 * [Clean installation](#install-mati-for-react-native)
 * [Reinstallation](#reinstall-mati-for-react-native)
 
 ## React Native Demo App
 
-You can go to GitHub to download the [Mati React Native demo app](https://github.com/GetMati/mati-mobile-examples/tree/main/reactNativeDemoApp)
+You can go to GitHub to download the [MetaMap React Native demo app](https://github.com/GetMati/mati-mobile-examples/tree/main/reactNativeDemoApp)
 
-## Install Mati for React Native
+## Install MetaMap for React Native
 
-In a terminal, use the following command to install Mati for React Native:
+In a terminal, use the following command to install MetaMap for React Native:
 
 ```bash
-npm install https://github.com/MatiFace/react-native-mati-global-id-sdk.git --save
+npm install https://github.com/MatiFace/react-native-metaMap-sdk.git --save
 ```
 
 ## EXPO Managed Workflow
@@ -28,11 +28,11 @@ npm install https://github.com/MatiFace/react-native-mati-global-id-sdk.git --sa
 The following instructions installs and add Expo to manage your workflow, and assumes you already have [`yarn`](https://classic.yarnpkg.com/lang/en/docs/install/) installed on your system:
 1. Install the SDK:
 	```bash
-	npm i react-native-mati-global-id-sdk
+	npm i react-native-metaMap-sdk
 	```
 2. Add the followling line to your `app.json` file:
 	```json
-	"plugins": ["react-native-mati-global-id-sdk"]
+	"plugins":["react-native-metaMap-sdk"]
 	```
 3. Run EXPO for your platform:
 	For iOS:
@@ -64,11 +64,11 @@ For Android check that the `minSdkVersion` in `<YOUR_APP>/build.gradle` is &#880
 
    ```xml
    <key>NSCameraUsageDescription</key>
-   <string>Mati needs access to your Camera</string>
+   <string>MetaMap needs access to your Camera</string>
    <key>NSPhotoLibraryUsageDescription</key>
-   <string>Mati needs access to your media library</string>
+   <string>MetaMap needs access to your media library</string>
    <key>NSMicrophoneUsageDescription</key>
-   <string>Mati needs access to your Microphone</string>
+   <string>MetaMap needs access to your Microphone</string>
    ```
    _**Note**_ The voiceliveness feature requires microphone access (`NSMicrophoneUsageDescription`).
 <br/>
@@ -128,27 +128,86 @@ For Android check that the `minSdkVersion` in `<YOUR_APP>/build.gradle` is &#880
    ##### Learn More About the Issue
    * Flipper https://github.com/facebook/react-native/issues/29984
    * 0.64 FBReactNativeSpec https://github.com/facebook/react-native/issues/31034
-
-   ##### Example Mati Podfiles on GitHub
-   * [Podfile Version 0.60+](https://github.com/GetMati/mati-mobile-examples/blob/main/reactnative-podexamples/Podfile_063)
-   * [Podfile Version 0.64](https://github.com/GetMati/mati-mobile-examples/blob/main/reactnative-podexamples/Podfile_064)
+    
+ ##### Example MetaMap Podfiles on GitHub
+ * [Podfile Version 0.60+](https://github.com/GetMati/mati-mobile-examples/blob/main/reactnative-podexamples/Podfile_063)
+ * [Podfile Version 0.64](https://github.com/GetMati/mati-mobile-examples/blob/main/reactnative-podexamples/Podfile_064)
 
    </p>
    </details>
-   
----
+  _**IMPORTANT**_ KNOWN ISSUE
+  <details><summary><b>Click here to learn more about the podfile x86_64 issues for Flipper</b></summary>
+  <p>
 
-## Reinstall Mati for React Native
-
-To reinstall Mati for React Native, you will need to:
-
-1. Uninstall your current version of Mati:
-    ```bash
-    npm uninstall react-native-mati-global-id-sdk
+    You may see an x86_64 error similar to the following:
+      ```
+    /Flipper/xplat/Flipper/FlipperRSocketResponder.cpp normal x86_64 c++ com.apple.compilers.llvm.clang.1_0.compiler
     ```
-1. Install the latest version of Mati:
+    This error is because React Native does not support Flipper (included by default), so you must remove Flipper.
+
+    ##### Remove Flipper
+
+    1. In your podfile:
+        * Replace
+            `use_flipper!` or `use-flipper!()`
+            with
+            `use_frameworks!`
+
+        * For React Native v0.64+ replace:
+            ```ruby
+            post_install do |installer|
+              react_native_post_install(installer)
+            end
+            ```
+            with
+            ```ruby
+            post_install do |installer|
+              react_native_post_install(installer)
+
+              installer.pods_project.targets.each do |target|
+                target.build_configurations.each do |config|
+                  config.build_settings['BUILD_LIBRARY_FOR_DISTRIBUTION'] = 'YES'
+                end
+
+                if (target.name&.eql?('FBReactNativeSpec'))
+                  target.build_phases.each do |build_phase|
+                    if (build_phase.respond_to?(:name) && build_phase.name.eql?('[CP-User] Generate Specs'))
+                      target.build_phases.move(build_phase, 0)
+                    end
+                  end
+                end
+              end
+            end
+            ```
+
+    1. Then run the following commands in your terminal:
+        ```bash
+        pod clean
+        pod install
+        ```
+
+    ##### Learn More About the Issue
+    * Flipper https://github.com/facebook/react-native/issues/29984
+    * 0.64 FBReactNativeSpec https://github.com/facebook/react-native/issues/31034
+
+    ##### Example MetaMap Podfiles on GitHub
+    * [Podfile Version 0.60+](https://github.com/GetMati/mati-mobile-examples/blob/main/reactnative-podexamples/Podfile_063)
+    * [Podfile Version 0.64](https://github.com/GetMati/mati-mobile-examples/blob/main/reactnative-podexamples/Podfile_064)
+
+  </p>
+  </details>
+
+## Reinstall MetaMap for React Native
+
+To reinstall MetaMap for React Native, you will need to:
+
+1. Uninstall your current version of MetaMap:
     ```bash
-    npm install https://github.com/MatiFace/react-native-mati-global-id-sdk.git --save
+    npm uninstall react-native-metaMap-sdk
+    ```
+1. Install the latest version of MetaMap:
+    ```bash
+    npm install https://github.com/MatiFace/react-native-metaMap-sdk.git --save
     ```
 1. Update your IDE files:
   * Android: Sync your Gradle files
@@ -157,7 +216,7 @@ To reinstall Mati for React Native, you will need to:
       pod clean && pod update
       ```
 
-## Example Mati React Native Implementation
+## Example MetaMap React Native Implementation
 
 The following is an example of the class Component.
 
@@ -171,8 +230,8 @@ import {
 } from 'react-native';
 
 import {
-  MatiGlobalIdSdk,
-} from 'react-native-mati-global-id-sdk';
+  MetaMapRNSdk,
+} from 'react-native-metaMap-sdk';
 
 export default class App extends Component {
   constructor() {
@@ -182,18 +241,18 @@ export default class App extends Component {
 
   componentDidMount() {
 	 //set listening callbacks
-  	const MatiVerifyResult = new NativeEventEmitter(NativeModules.MatiGlobalIdSdk)
- 	 MatiVerifyResult.addListener('verificationSuccess', (data) => console.log(data))
- 	 MatiVerifyResult.addListener('verificationCanceled', (data) => console.log(data))
+  	const MetaMapVerifyResult = new NativeEventEmitter(NativeModules.MetaMapRNSdk)
+ 	 MetaMapVerifyResult.addListener('verificationSuccess', (data) => console.log(data))
+ 	 MetaMapVerifyResult.addListener('verificationCanceled', (data) => console.log(data))
   }
 
   //call showFlow when button is clicked
-  handleMatiClickButton = () => {
+  handleMetaMapClickButton = () => {
 
 	 //set 3 params clientId (cant be null), flowId, metadata
   	  var yourMetadata = { param1: "value1", param2: "value2" }
 
-   	 MatiGlobalIdSdk.showFlow("YOUR_CLIENT_ID", "YOUR_FLOW_ID", yourMetadata);
+   	 MetaMapRNSdk.showFlow("YOUR_CLIENT_ID", "YOUR_FLOW_ID", yourMetadata);
   }
 
   //Add button to view graph
@@ -206,15 +265,16 @@ export default class App extends Component {
           alignItems: 'center',
           backgroundColor: 'powderblue',
         }}>
-        <Button onPress={this.handleMatiClickButton} title="Click here"/>
+        <Button onPress={this.handleMetaMapClickButton} title="Click here"/>
       </View>
     );
   }
 }
-
+```
 
 The following is an example of the Function Component.
 
+```ruby
 import React, {Component, useEffect} from 'react';
 import {
   NativeModules,
@@ -224,23 +284,22 @@ import {
 } from 'react-native';
 
 import {
-  MatiGlobalIdSdk,
-} from 'react-native-mati-global-id-sdk';
+  MetaMapRNSdk,
+} from 'react-native-metaMap-sdk';
 
 
 function App(props) {
 
     useEffect(() => {
-     	const MatiVerifyResult = new NativeEventEmitter(NativeModules.MatiGlobalIdSdk)
-     	MatiVerifyResult.addListener('verificationSuccess', (data) => console.log(data))
-     	MatiVerifyResult.addListener('verificationCanceled', (data) => console.log(data))
+     	const MetaMapVerifyResult = new NativeEventEmitter(NativeModules.MetaMapRNSdk)
+     	MetaMapVerifyResult.addListener('verificationSuccess', (data) => console.log(data))
+     	MetaMapVerifyResult.addListener('verificationCanceled', (data) => console.log(data))
     })
-
-    const handleMatiClickButton = (props) => {
+    const handleMetaMapClickButton = (props) => {
 
             //set 3 params clientId (cant be null), flowId, metadata
          var yourMetadata = { param1: "value1", param2: "value2" }
-       	 MatiGlobalIdSdk.showFlow("610b96fb7cc893001b135505", "611101668083a1001b13cc80", yourMetadata);
+       	 MetaMapRNSdk.showFlow("610b96fb7cc893001b135505", "611101668083a1001b13cc80", yourMetadata);
       }
 
     return (
@@ -251,11 +310,10 @@ function App(props) {
               alignItems: 'center',
               backgroundColor: 'powderblue',
             }}>
-            <Button onPress = {() => handleMatiClickButton()}  title="Click here"/>
+            <Button onPress = {() => handleMetaMapClickButton()}  title="Click here"/>
           </View>
         );
 }
 export default App;
-
 
 ```

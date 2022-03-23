@@ -1,9 +1,9 @@
 import { NativeModules } from 'react-native';
 
-const { MatiGlobalIdSdk } = NativeModules;
+const { MetaMapRNSdk } = NativeModules;
 
 module.exports = {
-	get MatiGlobalIdSdk() {
-		return MatiGlobalIdSdk;
+	get MetaMapRNSdk() {
+		return MetaMapRNSdk;
 	}
 };
