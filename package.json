@@ -1,7 +1,7 @@
 {
   "name": "react-native-metamap-sdk",
   "title": "React Native MetaMap Global Id Sdk",
-  "version": "4.0.2",
+  "version": "1.0.13",
   "description": "Mati React Native Plugin",
   "main": "index.js",
   "scripts": {

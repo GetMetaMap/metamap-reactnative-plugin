@@ -15,8 +15,8 @@ import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.bridge.ReadableMap;
 import com.facebook.react.bridge.WritableMap;
 import com.facebook.react.modules.core.DeviceEventManagerModule;
-import com.metamap.metamap_sdk.MetamapSdk;
-import com.metamap.metamap_sdk.Metadata;
+import com.getmati.mati_sdk.Metadata;
+import com.getmati.mati_sdk.MatiSdk;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -43,18 +43,18 @@ public class MetaMapRNSdkModule extends ReactContextBaseJavaModule implements Ac
         reactContext.runOnUiQueueThread(new Runnable() {
             @Override
             public void run() {
-                MetamapSdk.INSTANCE.startFlow(getReactApplicationContext().getCurrentActivity(),
+                MatiSdk.INSTANCE.startFlow(getReactApplicationContext().getCurrentActivity(),
                         clientId,
                         flowId,
                         convertToMetadata(metadata));
-                reactContext.addActivityEventListener(MetaMapRNSdkModule.this);
+                reactContext.addActivityEventListener(MatiGlobalIdSdkModule.this);
             }
         });
     }
 
     @Override
     public void onActivityResult(Activity activity, int requestCode, int resultCode, Intent data) {
-        if(requestCode == MetamapSdk.DEFAULT_REQUEST_CODE) {
+        if(requestCode == MatiSdk.REQUEST_CODE) {
             if(resultCode == RESULT_OK && data != null) {
                 WritableMap params = Arguments.createMap();
                 params.putString("identityId", data.getStringExtra(MetamapSdk.ARG_IDENTITY_ID));
