@@ -20,7 +20,7 @@ You can go to GitHub to download the [MetaMap React Native demo app](https://git
 In a terminal, use the following command to install MetaMap for React Native:
 
 ```bash
-npm install npm install npm install https://github.com/MatiFace/react-native-mati-global-id-sdk.git --save
+npm install https://github.com/MatiFace/react-native-mati-global-id-sdk.git --save
 ```
 
 ## EXPO Managed Workflow
@@ -207,7 +207,7 @@ To reinstall MetaMap for React Native, you will need to:
     ```
 1. Install the latest version of MetaMap:
     ```bash
-    npm install npm install https://github.com/MatiFace/react-native-mati-global-id-sdk.git --save
+    npm install https://github.com/MatiFace/react-native-mati-global-id-sdk.git --save
     ```
 1. Update your IDE files:
   * Android: Sync your Gradle files
