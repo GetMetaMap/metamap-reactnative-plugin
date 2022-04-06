@@ -47,7 +47,7 @@ public class MetaMapRNSdkModule extends ReactContextBaseJavaModule implements Ac
                         clientId,
                         flowId,
                         convertToMetadata(metadata));
-                reactContext.addActivityEventListener(MatiGlobalIdSdkModule.this);
+                reactContext.addActivityEventListener(MetaMapRNSdkModule.this);
             }
         });
     }
@@ -57,8 +57,8 @@ public class MetaMapRNSdkModule extends ReactContextBaseJavaModule implements Ac
         if(requestCode == MatiSdk.REQUEST_CODE) {
             if(resultCode == RESULT_OK && data != null) {
                 WritableMap params = Arguments.createMap();
-                params.putString("identityId", data.getStringExtra(MetamapSdk.ARG_IDENTITY_ID));
-                params.putString("verificationId", data.getStringExtra(MetamapSdk.ARG_VERIFICATION_ID));
+                params.putString("identityId", data.getStringExtra(MatiSdk.ARG_VERIFICATION_ID));
+                params.putString("verificationId", data.getStringExtra(MatiSdk.ARG_VERIFICATION_ID));
                sendEvent(reactContext, "verificationSuccess", params);
             } else {
                 sendEvent(reactContext, "verificationCanceled", null);
