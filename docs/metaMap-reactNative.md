@@ -28,11 +28,11 @@ npm install npm install npm install https://github.com/MatiFace/react-native-mat
 The following instructions installs and add Expo to manage your workflow, and assumes you already have [`yarn`](https://classic.yarnpkg.com/lang/en/docs/install/) installed on your system:
 1. Install the SDK:
 	```bash
-	npm i react-native-metamap-sdk
+	npm i react-native-expo-metamap-sdk
 	```
 2. Add the followling line to your `app.json` file:
 	```json
-	"plugins":["react-native-metamap-sdk"]
+	"plugins":["react-native-expo-metamap-sdk"]
 	```
 3. Run EXPO for your platform:
 	For iOS:
@@ -231,7 +231,7 @@ import {
 
 import {
   MetaMapRNSdk,
-} from 'react-native-metamap-sdk';
+} from 'react-native-expo-metamap-sdk';
 
 export default class App extends Component {
   constructor() {
@@ -285,7 +285,7 @@ import {
 
 import {
   MetaMapRNSdk,
-} from 'react-native-metamap-sdk';
+} from 'react-native-expo-metamap-sdk';
 
 
 function App(props) {

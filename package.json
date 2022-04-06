@@ -1,5 +1,5 @@
 {
-  "name": "react-native-metamap-sdk",
+  "name": "react-native-expo-metamap-sdk",
   "title": "React Native MetaMap Global Id Sdk",
   "version": "1.0.19",
   "description": "Mati React Native Plugin",
@@ -14,8 +14,8 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/github_account/react-native-metaMap-sdk.git",
-    "baseUrl": "https://github.com/github_account/react-native-metaMap-sdk"
+    "url": "git+https://github.com/github_account/react-native-expo-metamap-sdk.git",
+    "baseUrl": "https://github.com/github_account/react-native-expo-metamap-sdk"
   },
   "keywords": [
     "react-native"

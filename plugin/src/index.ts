@@ -13,7 +13,7 @@ import path from 'path';
 import fs from 'fs';
 import { InstallationPage } from './constants';
 
-const pkg = require('react-native-metamap-sdk/package.json');
+const pkg = require('react-native-expo-metamap-sdk/package.json');
 
 const CAMERA_USAGE = 'Allow $(PRODUCT_NAME) to access your camera';
 const MICROPHONE_USAGE = 'Allow $(PRODUCT_NAME) to access your microphone';
@@ -45,7 +45,7 @@ function addLines(content: string, find: string | RegExp, offset: number, toAdd:
 // It's ok to have multiple allprojects.repositories, so we create a new one since it's cheaper than tokenizing
 // the existing block to find the correct place to insert our camera maven.
 const gradleMaven =
-  'allprojects { repositories { maven { url "$rootDir/../node_modules/react-native-metaMap-sdk/android/maven" } } }';
+  'allprojects { repositories { maven { url "$rootDir/../node_modules/react-native-expo-metamap-sdk/android/maven" } } }';
 
 const withAndroidCameraGradle: ConfigPlugin = (config) => {
   return withProjectBuildGradle(config, (config) => {
@@ -59,7 +59,7 @@ const withAndroidCameraGradle: ConfigPlugin = (config) => {
 };
 
 export function setGradleMaven(buildGradle: string): string {
-  if (buildGradle.includes('react-native-metamap-sdk/android/maven')) {
+  if (buildGradle.includes('react-native-expo-metamap-sdk/android/maven')) {
     return buildGradle;
   }
 
