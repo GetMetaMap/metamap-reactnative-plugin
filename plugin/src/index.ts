@@ -13,7 +13,7 @@ import path from 'path';
 import fs from 'fs';
 import { InstallationPage } from './constants';
 
-const pkg = require('react-native-metaMap-sdk/package.json');
+const pkg = require('react-native-metamap-sdk/package.json');
 
 const CAMERA_USAGE = 'Allow $(PRODUCT_NAME) to access your camera';
 const MICROPHONE_USAGE = 'Allow $(PRODUCT_NAME) to access your microphone';
@@ -59,7 +59,7 @@ const withAndroidCameraGradle: ConfigPlugin = (config) => {
 };
 
 export function setGradleMaven(buildGradle: string): string {
-  if (buildGradle.includes('react-native-metaMap-sdk/android/maven')) {
+  if (buildGradle.includes('react-native-metamap-sdk/android/maven')) {
     return buildGradle;
   }
 
