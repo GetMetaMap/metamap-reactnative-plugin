@@ -3,7 +3,7 @@ package com.reactlibrary;
 import android.app.Activity;
 import android.content.Intent;
 import android.util.Log;
-
+import android.graphics.Color;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import com.facebook.react.bridge.ActivityEventListener;
@@ -76,7 +76,13 @@ public class MetaMapRNSdkModule extends ReactContextBaseJavaModule implements Ac
             HashMap<String, Object> metadataHashMap = data.toHashMap();
             Metadata.Builder metadataBuilder = new Metadata.Builder();
             for (Map.Entry<String, Object> entry : metadataHashMap.entrySet()) {
-                metadataBuilder.with(entry.getKey(), entry.getValue());
+                String key = entry.getKey();
+                if (key.toLowerCase().contains("color")) {
+                    int colorValue = Color.parseColor((String) entry.getValue());
+                    metadataBuilder.with(key, colorValue);
+                } else {
+                    metadataBuilder.with(entry.getKey(), entry.getValue());
+                }
             }
             return metadataBuilder.build();
         } else {
