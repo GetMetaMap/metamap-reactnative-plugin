@@ -78,8 +78,12 @@ public class MetaMapRNSdkModule extends ReactContextBaseJavaModule implements Ac
             for (Map.Entry<String, Object> entry : metadataHashMap.entrySet()) {
                 String key = entry.getKey();
                 if (key.toLowerCase().contains("color")) {
-                    int colorValue = Color.parseColor((String) entry.getValue());
-                    metadataBuilder.with(key, colorValue);
+                    String hexColor = (String) entry.getValue();
+                    int color = Color.parseColor(hexColor);
+                    if (hexColor.length() == 9) {
+                        color = Color.argb(Color.blue(color), Color.alpha(color), Color.red(color), Color.green(color));
+                    }
+                    metadataBuilder.with(key, color);
                 } else {
                     metadataBuilder.with(entry.getKey(), entry.getValue());
                 }
