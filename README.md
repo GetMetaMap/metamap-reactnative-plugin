@@ -142,7 +142,7 @@ Set the Button Color
 yourMetadata: {"buttonColor": "hexColor"}
 ```
 
-Title color of the button:
+ Set the Title color of the button:
 ```bash
 yourMetadata: {"buttonTextColor": "hexColor"}
 ```
