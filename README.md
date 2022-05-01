@@ -30,7 +30,7 @@ Add the following to your `info.plist` file to grant camera, microphone, and pho
    <string>MetaMap needs access to your Microphone</string>
    ```
 
-2.1 The following is an example of the class Component.
+2.1 The following is an example of the class Component:
 
 ```bash
 import React, {Component} from 'react';
@@ -84,7 +84,7 @@ export default class App extends Component {
 }
 ```
 
-2.2 The following is an example of the Function Component.
+2.2 The following is an example of the Function Component:
 
 ```bash
 import React, {Component, useEffect} from 'react';
@@ -128,5 +128,21 @@ function App(props) {
 }
 export default App;
 ```
+## Metadata Usage
 
+Metadata is an additional optional parameter that you can receive using a webhook after passing verification:
 
+Set the Language:
+```bash
+yourMetadata: {"fixedLanguage": "es"}
+```
+
+Set the Button Color
+```bash
+yourMetadata: {"buttonColor": "hexColor"}
+```
+
+Title color of the button:
+```bash
+yourMetadata: {"buttonTextColor": "hexColor"}
+```
