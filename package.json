@@ -1,7 +1,7 @@
 {
   "name": "react-native-metamap-sdk",
   "title": "React Native MetaMap Global Id Sdk",
-  "version": "4.0.29",
+  "version": "4.0.30",
   "description": "Mati React Nastive Plugin",
   "main": "index.js",
   "scripts": {
@@ -14,8 +14,8 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/github_account/react-native-metaMap-sdk.git",
-    "baseUrl": "https://github.com/github_account/react-native-metaMap-sdk"
+    "url": "https://github.com/GetMetaMap/mati-reactnative-plugin",
+    "baseUrl": "https://github.com/GetMetaMap/mati-reactnative-plugin"
   },
   "keywords": [
     "react-native"
