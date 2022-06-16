@@ -32,13 +32,13 @@ Add the following to your `info.plist` file to grant camera, microphone, and pho
    <string>MetaMap needs access to your Microphone</string>
    
    <key>NSLocationWhenInUseUsageDescription</key>
-	<string>MetaMap will use your location information to provide best possible verification experience.</string>
+   <string>MetaMap will use your location information to provide best possible verification experience.</string>
 	
-	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>MetaMap will use your location information to provide best possible verification experience.</string>
+   <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+   <string>MetaMap will use your location information to provide best possible verification experience.</string>
 	
-	<key>NSLocationAlwaysUsageDescription</key>
-	<string>MetaMap will use your location information to provide best possible verification experience.</string>
+   <key>NSLocationAlwaysUsageDescription</key>
+   <string>MetaMap will use your location information to provide best possible verification experience.</string>
    ```
 
 2.1 The following is an example of the class Component:
