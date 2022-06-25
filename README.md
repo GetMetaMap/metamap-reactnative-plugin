@@ -1,3 +1,10 @@
+---
+title: "React Native"
+excerpt: "Add the MetaMap button to your React Native app."
+slug: "react-native"
+category: 61ae8e8dba577a0010791480
+---
+
 ## Install MetaMap for React Native Expo 
 
 https://www.npmjs.com/package/react-native-expo-metamap-sdk
@@ -153,7 +160,12 @@ Set the Button Color
 yourMetadata: {"buttonColor": "hexColor"}
 ```
 
- Set the Title color of the button:
+Set the Title color of the button:
 ```bash
 yourMetadata: {"buttonTextColor": "hexColor"}
 ```
+
+Set identity Id as parameter for re-verification:
+```bash
+metadata: {"identityId": "value"}
+   ```
