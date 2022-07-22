@@ -20,7 +20,7 @@ Pod::Spec.new do |s|
   s.requires_arc = true
 
   s.dependency "React"
-	s.dependency 'MetaMap-Global-ID-SDK'
+	s.dependency 'MetaMap-Global-ID-SDK', "~> 3.9.11"
   # s.dependency "..."
 end
 
