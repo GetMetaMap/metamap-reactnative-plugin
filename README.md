@@ -119,3 +119,9 @@ function App(props) {
 export default App;
 
 ```
+
+## Some error codes you may get during integration
+
+`402` - MetaMap services are not paid: please contact your customer success manager
+
+`403` - MetaMap credentials issues: please check your client id and MetaMap id
