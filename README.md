@@ -13,7 +13,7 @@ https://www.npmjs.com/package/react-native-expo-metamap-sdk
 
 1. In a terminal, use the following command to install MetaMap for React Native:
 ```bash
-npm i react-native-metamap-sdk
+npm i react-native-metamap-sdk@4.2.0
 ```
 
 #### Install for Android
