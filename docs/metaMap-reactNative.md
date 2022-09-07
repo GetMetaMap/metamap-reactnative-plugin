@@ -11,6 +11,15 @@ This is a guide to add MetaMap to Android and iOS for React Native versions 0.60
 * [Clean installation](#install-mati-for-react-native)
 * [Reinstallation](#reinstall-mati-for-react-native)
 
+## Version
+
+This plugin uses the latest versions of the MetaMap iOS and Android SDKs. For more information on the latest native SDK versions, go to:
+* [Android](https://docs.getmati.com/docs/android-changelog)
+* [iOS](https://docs.getati.com/docs/ios-changelog)
+
+<!--For changes to the plugin, go to the [changelog page](https://docs.getmati.com/docs/react-native-changelog)-->
+
+
 ## React Native Demo App
 
 You can go to GitHub to download the [MetaMap React Native demo app](https://github.com/GetMati/mati-mobile-examples/tree/main/reactNativeDemoApp)
@@ -135,67 +144,6 @@ For Android check that the `minSdkVersion` in `<YOUR_APP>/build.gradle` is &#880
 
    </p>
    </details>
-  _**IMPORTANT**_ KNOWN ISSUE
-  <details><summary><b>Click here to learn more about the podfile x86_64 issues for Flipper</b></summary>
-  <p>
-
-    You may see an x86_64 error similar to the following:
-      ```
-    /Flipper/xplat/Flipper/FlipperRSocketResponder.cpp normal x86_64 c++ com.apple.compilers.llvm.clang.1_0.compiler
-    ```
-    This error is because React Native does not support Flipper (included by default), so you must remove Flipper.
-
-    ##### Remove Flipper
-
-    1. In your podfile:
-        * Replace
-            `use_flipper!` or `use-flipper!()`
-            with
-            `use_frameworks!`
-
-        * For React Native v0.64+ replace:
-            ```ruby
-            post_install do |installer|
-              react_native_post_install(installer)
-            end
-            ```
-            with
-            ```ruby
-            post_install do |installer|
-              react_native_post_install(installer)
-
-              installer.pods_project.targets.each do |target|
-                target.build_configurations.each do |config|
-                  config.build_settings['BUILD_LIBRARY_FOR_DISTRIBUTION'] = 'YES'
-                end
-
-                if (target.name&.eql?('FBReactNativeSpec'))
-                  target.build_phases.each do |build_phase|
-                    if (build_phase.respond_to?(:name) && build_phase.name.eql?('[CP-User] Generate Specs'))
-                      target.build_phases.move(build_phase, 0)
-                    end
-                  end
-                end
-              end
-            end
-            ```
-
-    1. Then run the following commands in your terminal:
-        ```bash
-        pod clean
-        pod install
-        ```
-
-    ##### Learn More About the Issue
-    * Flipper https://github.com/facebook/react-native/issues/29984
-    * 0.64 FBReactNativeSpec https://github.com/facebook/react-native/issues/31034
-
-    ##### Example MetaMap Podfiles on GitHub
-    * [Podfile Version 0.60+](https://github.com/GetMati/mati-mobile-examples/blob/main/reactnative-podexamples/Podfile_063)
-    * [Podfile Version 0.64](https://github.com/GetMati/mati-mobile-examples/blob/main/reactnative-podexamples/Podfile_064)
-
-  </p>
-  </details>
 
 ## Reinstall MetaMap for React Native
 
@@ -217,6 +165,8 @@ To reinstall MetaMap for React Native, you will need to:
       ```
 
 ## Example MetaMap React Native Implementation
+   <details><summary><b>Click here for an example React Native app.</b></summary>
+   <p>
 
 The following is an example of the class Component.
 
@@ -317,3 +267,11 @@ function App(props) {
 export default App;
 
 ```
+</p>
+</details>
+
+## Some error codes you may get during integration
+
+`402` - MetaMap services are not paid: please contact your customer success manager
+
+`403` - MetaMap credentials issues: please check your client id and MetaMap id
