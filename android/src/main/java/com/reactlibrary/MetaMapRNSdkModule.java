@@ -3,7 +3,7 @@ package com.reactlibrary;
 import android.app.Activity;
 import android.content.Intent;
 import android.util.Log;
-
+import android.graphics.Color;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import com.facebook.react.bridge.ActivityEventListener;
@@ -15,8 +15,8 @@ import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.bridge.ReadableMap;
 import com.facebook.react.bridge.WritableMap;
 import com.facebook.react.modules.core.DeviceEventManagerModule;
-import com.getmati.mati_sdk.Metadata;
-import com.getmati.mati_sdk.MatiSdk;
+import com.metamap.metamap_sdk.MetamapSdk;
+import com.metamap.metamap_sdk.Metadata;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -43,7 +43,7 @@ public class MetaMapRNSdkModule extends ReactContextBaseJavaModule implements Ac
         reactContext.runOnUiQueueThread(new Runnable() {
             @Override
             public void run() {
-                MatiSdk.INSTANCE.startFlow(getReactApplicationContext().getCurrentActivity(),
+                MetamapSdk.INSTANCE.startFlow(getReactApplicationContext().getCurrentActivity(),
                         clientId,
                         flowId,
                         convertToMetadata(metadata));
@@ -54,12 +54,12 @@ public class MetaMapRNSdkModule extends ReactContextBaseJavaModule implements Ac
 
     @Override
     public void onActivityResult(Activity activity, int requestCode, int resultCode, Intent data) {
-        if(requestCode == MatiSdk.REQUEST_CODE) {
+        if(requestCode == MetamapSdk.DEFAULT_REQUEST_CODE) {
             if(resultCode == RESULT_OK && data != null) {
                 WritableMap params = Arguments.createMap();
-                params.putString("identityId", data.getStringExtra(MatiSdk.ARG_VERIFICATION_ID));
-                params.putString("verificationId", data.getStringExtra(MatiSdk.ARG_VERIFICATION_ID));
-               sendEvent(reactContext, "verificationSuccess", params);
+                params.putString("identityId", data.getStringExtra(MetamapSdk.ARG_IDENTITY_ID));
+                params.putString("verificationId", data.getStringExtra(MetamapSdk.ARG_VERIFICATION_ID));
+                sendEvent(reactContext, "verificationSuccess", params);
             } else {
                 sendEvent(reactContext, "verificationCanceled", null);
             }
@@ -76,7 +76,17 @@ public class MetaMapRNSdkModule extends ReactContextBaseJavaModule implements Ac
             HashMap<String, Object> metadataHashMap = data.toHashMap();
             Metadata.Builder metadataBuilder = new Metadata.Builder();
             for (Map.Entry<String, Object> entry : metadataHashMap.entrySet()) {
-                metadataBuilder.with(entry.getKey(), entry.getValue());
+                String key = entry.getKey();
+                if (key.toLowerCase().contains("color")) {
+                    String hexColor = (String) entry.getValue();
+                    int color = Color.parseColor(hexColor);
+                    if (hexColor.length() == 9) {
+                        color = Color.argb(Color.blue(color), Color.alpha(color), Color.red(color), Color.green(color));
+                    }
+                    metadataBuilder.with(key, color);
+                } else {
+                    metadataBuilder.with(entry.getKey(), entry.getValue());
+                }
             }
             return metadataBuilder.build();
         } else {
@@ -93,4 +103,3 @@ public class MetaMapRNSdkModule extends ReactContextBaseJavaModule implements Ac
     }
 
 }
-

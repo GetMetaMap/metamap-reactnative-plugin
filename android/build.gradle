@@ -19,10 +19,10 @@ buildscript {
 apply plugin: 'com.android.library'
 apply plugin: 'maven-publish'
 
-def DEFAULT_COMPILE_SDK_VERSION = 29
+def DEFAULT_COMPILE_SDK_VERSION = 31
 def DEFAULT_BUILD_TOOLS_VERSION = "29.0.0"
 def DEFAULT_MIN_SDK_VERSION = 21
-def DEFAULT_TARGET_SDK_VERSION = 29
+def DEFAULT_TARGET_SDK_VERSION = 31
 
 android {
     compileSdkVersion safeExtGet('compileSdkVersion', DEFAULT_COMPILE_SDK_VERSION)
@@ -57,5 +57,5 @@ dependencies {
     // https://github.com/facebook/react-native/blob/0.61-stable/template/android/app/build.gradle#L192
     //noinspection GradleDynamicVersion
     implementation 'com.facebook.react:react-native:+'  // From node_modules
-    implementation 'com.getmati:mati-sdk:3.11.1'
+    implementation 'com.metamap:android-sdk:3.23.0'
 }
