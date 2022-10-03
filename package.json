@@ -1,7 +1,7 @@
 {
   "name": "react-native-expo-metamap-sdk",
   "title": "React Native MetaMap Global Id Sdk",
-  "version": "1.5.1",
+  "version": "1.6.0",
   "description": "Mati React Native Plugin",
   "main": "index.js",
   "scripts": {
@@ -21,16 +21,16 @@
     "react-native"
   ],
   "author": {
-    "name": "Andrey Posnov",
-    "email": "andrey.posnov@mati.io"
+    "name": "Avo Sukiasyan",
+    "email": "avetik.sukiasyan@metamap.com"
   },
   "license": "MIT",
   "licenseFilename": "LICENSE",
   "readmeFilename": "README.md",
   "dependencies": {
-    "react-scripts": "^4.0.3"
+    "react-scripts": "^5.0.1"
   },
   "devDependencies": {
-    "expo-module-scripts": "^2.0.0"
+    "expo-module-scripts": "^2.1.1"
   }
 }
