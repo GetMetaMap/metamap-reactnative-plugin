@@ -249,7 +249,7 @@ function App(props) {
 
             //set 3 params clientId (cant be null), flowId, metadata
          var yourMetadata = { param1: "value1", param2: "value2" }
-       	 MetaMapRNSdk.showFlow("610b96fb7cc893001b135505", "611101668083a1001b13cc80", yourMetadata);
+       	 MetaMapRNSdk.showFlow("YOUR_CLIENT_ID", "YOUR_FLOW_ID", yourMetadata);
       }
 
     return (
