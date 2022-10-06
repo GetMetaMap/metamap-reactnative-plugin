@@ -1,6 +1,6 @@
 ---
 LTS version (Recommended for most users): "4.3.0"
-Current Version(Latest features): "4.3.2"
+Current Version(Latest features): "4.5.0"
 ---
 
 ## Install MetaMap for React Native Expo 
