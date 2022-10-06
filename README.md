@@ -1,7 +1,7 @@
 ---
 title: "MetaMap React Native Expo SDK"
 LTS version (Recommended for most users): "1.5.0"
-Current Version(Latest features): "1.7.0"
+Current Version(Latest features): "1.7.1"
 category: 61ae8e8dba577a0010791480
 ---
 
