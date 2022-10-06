@@ -12,7 +12,7 @@ Pod::Spec.new do |s|
   s.homepage     = "https://github.com/github_account/react-native-expo-metamap-sdk"
   s.license      = "MIT"
   # s.license    = { :type => "MIT", :file => "FILE_LICENSE" }
-  s.authors      = { "Andrey Posnov" => "andrey.posnov@mati.io" }
+  s.authors      = { "Avo Sukiasyan" => "avetik.sukiasyan@metamap.com" }
   s.platforms    = { :ios => "12.0" }
   s.source       = { :git => "https://github.com/github_account/react-native-expo-metamap-sdk.git", :tag => "#{s.version}" }
 
@@ -20,6 +20,6 @@ Pod::Spec.new do |s|
   s.requires_arc = true
 
   s.dependency "React"
-	s.dependency 'MetaMap-ID-SDK', '3.10.1'
+	s.dependency 'MetaMap-ID-SDK', '3.11.0'
   # s.dependency "..."
 end
