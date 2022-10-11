@@ -1,7 +1,7 @@
 ---
-title: "iOS"
-excerpt: "Add the MetaMap button to your iOS app."
-slug: "ios"
+title: "React Native"
+excerpt: "Add the MetaMap button to your React Native app."
+slug: "react-native"
 category: 61ae8e8dba577a0010791480
 ---
 
