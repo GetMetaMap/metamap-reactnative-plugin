@@ -1,9 +1,8 @@
----
-title: "MetaMap React Native Expo SDK"
-LTS version (Recommended for most users): "1.5.0"
-Current Version(Latest features): "1.7.1"
-category: 61ae8e8dba577a0010791480
----
+
+
+| LTS version (Recommended for most users): | Current Version(Latest features) |
+|-------------------------------------------|----------------------------------|
+| 1.5.0                                     | 1.7.2                            |
 
 ## Install MetaMap for React Native Expo
 In a terminal, use the following command to install MetaMap for React Native:
