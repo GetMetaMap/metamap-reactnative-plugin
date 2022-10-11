@@ -10,7 +10,7 @@ category: 61ae8e8dba577a0010791480
 |-------------------------------------------|----------------------------------|
 | 4.3.0                                     | 4.5.2                            |
 
-## Install MetaMap for React Native Expo
+## Install MetaMap for React Native Expo 
 
 https://www.npmjs.com/package/react-native-expo-metamap-sdk
 
@@ -32,7 +32,7 @@ From your podfile directory, run the following command to fetch the project depe
 ```bash
    pod install
    ```
-Add the following to your `info.plist` file to grant camera, microphone, and photo gallery access:
+Add the following to your `info.plist` file to grant camera, microphone, and photo gallery access: 
 ```bash
    <key>NSCameraUsageDescription</key>
    <string>MetaMap needs access to your Camera</string>
@@ -45,10 +45,10 @@ Add the following to your `info.plist` file to grant camera, microphone, and pho
    
    <key>NSLocationWhenInUseUsageDescription</key>
    <string>MetaMap will use your location information to provide best possible verification experience.</string>
-	
+    
    <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
    <string>MetaMap will use your location information to provide best possible verification experience.</string>
-	
+    
    <key>NSLocationAlwaysUsageDescription</key>
    <string>MetaMap will use your location information to provide best possible verification experience.</string>
    ```
@@ -75,19 +75,19 @@ export default class App extends Component {
   }
 
   componentDidMount() {
-	 //set listening callbacks
-  	const MetaMapVerifyResult = new NativeEventEmitter(NativeModules.MetaMapRNSdk)
- 	 MetaMapVerifyResult.addListener('verificationSuccess', (data) => console.log(data))
- 	 MetaMapVerifyResult.addListener('verificationCanceled', (data) => console.log(data))
+     //set listening callbacks
+      const MetaMapVerifyResult = new NativeEventEmitter(NativeModules.MetaMapRNSdk)
+      MetaMapVerifyResult.addListener('verificationSuccess', (data) => console.log(data))
+      MetaMapVerifyResult.addListener('verificationCanceled', (data) => console.log(data))
   }
 
   //call showFlow when button is clicked
   handleMetaMapClickButton = () => {
 
-	 //set 3 params clientId (cant be null), flowId, metadata
-  	  var yourMetadata = { param1: "value1", param2: "value2" }
+     //set 3 params clientId (cant be null), flowId, metadata
+        var yourMetadata = { param1: "value1", param2: "value2" }
 
-   	 MetaMapRNSdk.showFlow("YOUR_CLIENT_ID", "YOUR_FLOW_ID", yourMetadata);
+        MetaMapRNSdk.showFlow("YOUR_CLIENT_ID", "YOUR_FLOW_ID", yourMetadata);
   }
 
   //Add button to view graph
@@ -126,15 +126,15 @@ import {
 function App(props) {
 
     useEffect(() => {
-     	const MetaMapVerifyResult = new NativeEventEmitter(NativeModules.MetaMapRNSdk)
-     	MetaMapVerifyResult.addListener('verificationSuccess', (data) => console.log(data))
-     	MetaMapVerifyResult.addListener('verificationCanceled', (data) => console.log(data))
+         const MetaMapVerifyResult = new NativeEventEmitter(NativeModules.MetaMapRNSdk)
+         MetaMapVerifyResult.addListener('verificationSuccess', (data) => console.log(data))
+         MetaMapVerifyResult.addListener('verificationCanceled', (data) => console.log(data))
     })
     const handleMetaMapClickButton = (props) => {
 
             //set 3 params clientId (cant be null), flowId, metadata
          var yourMetadata = { param1: "value1", param2: "value2" }
-       	 MetaMapRNSdk.showFlow("610b96fb7cc893001b135505", "611101668083a1001b13cc80", yourMetadata);
+            MetaMapRNSdk.showFlow("610b96fb7cc893001b135505", "611101668083a1001b13cc80", yourMetadata);
       }
 
     return (
@@ -180,3 +180,4 @@ metadata: {"identityId": "value"}
 `402` - MetaMap services are not paid: please contact your customer success manager
 
 `403` - MetaMap credentials issues: please check your client id and MetaMap id
+
