@@ -1,7 +1,14 @@
 ---
-LTS version (Recommended for most users): "4.3.0"
-Current Version(Latest features): "4.5.1"
+title: "iOS"
+excerpt: "Add the MetaMap button to your iOS app."
+slug: "ios"
+category: 61ae8e8dba577a0010791480
 ---
+
+
+| LTS version (Recommended for most users): | Current Version(Latest features) |
+|-------------------------------------------|----------------------------------|
+| 4.3.0                                     | 4.5.2                            |
 
 ## Install MetaMap for React Native Expo 
 
