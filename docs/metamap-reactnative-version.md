@@ -1,9 +1,8 @@
 ---
-title: "iOS Changelog"
-excerpt: "MetaMap's React Native SDK Changelog"
-slug: "react-native-changelog"
+title: "React Native"
+excerpt: "Add the MetaMap button to your React Native app."
+slug: "react-native"
 category: 61ae8e8dba577a0010791480
-hidden: true
 ---
 
 # Feedback
