@@ -7,8 +7,8 @@ category: 61ae8e8dba577a0010791480
 
 
 | LTS version (Recommended for most users): | Current Version(Latest features) |
-|-------------------------------------------|----------------------------------|
-| 4.3.0                                     | 4.5.3                            |
+|-------------------------------------|----------------------------------|
+| 4.5.4                                    | 4.5.4                            |
 
 ## Install MetaMap for React Native Expo 
 
@@ -18,7 +18,7 @@ https://www.npmjs.com/package/react-native-expo-metamap-sdk
 
 1. In a terminal, use the following command to install MetaMap for React Native:
 ```bash
-npm i react-native-metamap-sdk@4.3.0  
+npm i react-native-metamap-sdk@4.5.4  
 ```
 
 #### Install for Android
