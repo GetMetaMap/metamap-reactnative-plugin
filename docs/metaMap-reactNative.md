@@ -8,7 +8,7 @@ category: 61ae8e8dba577a0010791480
 
 | LTS version (Recommended for most users): | Current Version(Latest features) |
 |-------------------------------------------|----------------------------------|
-| 4.3.0                                     | 4.5.2                            |
+| 4.5.4                                    | 4.7.0                            |
 
 ## Install MetaMap for React Native Expo
 
@@ -16,10 +16,12 @@ https://www.npmjs.com/package/react-native-expo-metamap-sdk
 
 ## Install MetaMap for React Native
 
-1. In a terminal, use the following command to install MetaMap for React Native:
+In a terminal, use the following command to install MetaMap for React Native, where `<version_number>` is either the LTS or current version:
+
 ```bash
-npm i react-native-metamap-sdk@4.3.0  
+npm i react-native-metamap-sdk@<version_number>  
 ```
+Then install for [Android](#install-for-android) or [iOS](#install-for-ios)
 
 #### Install for Android
 
@@ -36,24 +38,27 @@ Add the following to your `info.plist` file to grant camera, microphone, and pho
 ```bash
    <key>NSCameraUsageDescription</key>
    <string>MetaMap needs access to your Camera</string>
-   
+
    <key>NSPhotoLibraryUsageDescription</key>
    <string>MetaMap needs access to your media library</string>
-   
+
    <key>NSMicrophoneUsageDescription</key>
    <string>MetaMap needs access to your Microphone</string>
-   
+
    <key>NSLocationWhenInUseUsageDescription</key>
    <string>MetaMap will use your location information to provide best possible verification experience.</string>
-	
+
    <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
    <string>MetaMap will use your location information to provide best possible verification experience.</string>
-	
+
    <key>NSLocationAlwaysUsageDescription</key>
    <string>MetaMap will use your location information to provide best possible verification experience.</string>
    ```
+   <details>
+   <summary>Example MetaMap React Native Expo Implementation</summary>
+   <p>
 
-2.1 The following is an example of the class Component:
+The following is an example of the class Component:
 
 ```bash
 import React, {Component} from 'react';
@@ -107,7 +112,7 @@ export default class App extends Component {
 }
 ```
 
-2.2 The following is an example of the Function Component:
+The following is an example of the Function Component:
 
 ```bash
 import React, {Component, useEffect} from 'react';
@@ -134,7 +139,7 @@ function App(props) {
 
             //set 3 params clientId (cant be null), flowId, metadata
          var yourMetadata = { param1: "value1", param2: "value2" }
-       	 MetaMapRNSdk.showFlow("610b96fb7cc893001b135505", "611101668083a1001b13cc80", yourMetadata);
+       	 MetaMapRNSdk.showFlow("YOUR_CLIENT_ID", "YOUR_FLOW_ID", yourMetadata);
       }
 
     return (
@@ -151,6 +156,9 @@ function App(props) {
 }
 export default App;
 ```
+</p>
+</details>
+
 ## Metadata Usage
 
 Metadata is an additional optional parameter that you can receive using a webhook after passing verification:
