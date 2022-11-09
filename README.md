@@ -2,7 +2,7 @@
 
 | LTS version (Recommended for most users): | Current Version(Latest features) |
 |-------------------------------------------|----------------------------------|
-| 1.7.4                                     | 1.7.4                            |
+| 1.7.5                                     | 1.7.4                            |
 
 ## Install MetaMap for React Native Expo
 In a terminal, use the following command to install MetaMap for React Native:
