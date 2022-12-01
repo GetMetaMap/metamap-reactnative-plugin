@@ -88,6 +88,7 @@ public class MetaMapRNSdkModule extends ReactContextBaseJavaModule implements Ac
                     metadataBuilder.with(entry.getKey(), entry.getValue());
                 }
             }
+            metadataBuilder.with("sdkType", "react-native-android");
             return metadataBuilder.build();
         } else {
             return  null;
