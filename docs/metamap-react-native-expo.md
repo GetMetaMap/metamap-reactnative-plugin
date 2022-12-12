@@ -8,7 +8,7 @@ category: 61ae8e8dba577a0010791480
 
 | LTS version (Recommended for most users): | Current Version(Latest features) |
 |-------------------------------------------|----------------------------------|
-| 4.7.3                                     | 4.7.3                            |
+| 4.9.0                                     | 4.9.0                            |
 
 # MetaMap React Expo Native Usage Guide
 
@@ -22,7 +22,7 @@ This plugin uses the latest versions of the MetaMap iOS and Android SDKs. For mo
 The following instructions installs and add Expo to manage your workflow, and assumes you already have [`yarn`](https://classic.yarnpkg.com/lang/en/docs/install/) installed on your system:
 1. Install the SDK:
 	```bash
-	npm i react-native-expo-metamap-sdk@<version_number>  
+	npm i react-native-expo-metamap-sdk  
 	```
 2. Add the following line to your `app.json` file:
 	```JSON
