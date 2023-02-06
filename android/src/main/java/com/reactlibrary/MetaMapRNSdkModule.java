@@ -55,13 +55,17 @@ public class MetaMapRNSdkModule extends ReactContextBaseJavaModule implements Ac
     @Override
     public void onActivityResult(Activity activity, int requestCode, int resultCode, Intent data) {
         if(requestCode == MetamapSdk.DEFAULT_REQUEST_CODE) {
-            if(resultCode == RESULT_OK && data != null) {
+            if(data != null) {
                 WritableMap params = Arguments.createMap();
                 params.putString("identityId", data.getStringExtra(MetamapSdk.ARG_IDENTITY_ID));
                 params.putString("verificationId", data.getStringExtra(MetamapSdk.ARG_VERIFICATION_ID));
-               sendEvent(reactContext, "verificationSuccess", params);
+                if (resultCode == RESULT_OK) {
+                    sendEvent(reactContext, "verificationSuccess", params);
+                } else {
+                    sendEvent(reactContext, "verificationCanceled", params);
+                }
             } else {
-                sendEvent(reactContext, "verificationCanceled", null);
+                sendEvent(reactContext, "verificationCanceled", params);
             }
         }
     }
