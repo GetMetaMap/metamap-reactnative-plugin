@@ -8,7 +8,7 @@ category: 61ae8e8dba577a0010791480
 
 | LTS version (Recommended for most users): | Current Version(Latest features) |
 |-------------------------------------------|----------------------------------|
-| 4.9.0                                     | 4.9.0                            |
+| 2.0.0                                     | 2.0.2                            |
 
 # MetaMap React Expo Native Usage Guide
 
