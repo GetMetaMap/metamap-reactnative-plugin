@@ -65,7 +65,7 @@ public class MetaMapRNSdkModule extends ReactContextBaseJavaModule implements Ac
                     sendEvent(reactContext, "verificationCanceled", params);
                 }
             } else {
-                sendEvent(reactContext, "verificationCanceled", params);
+                sendEvent(reactContext, "verificationCanceled", null);
             }
         }
     }
