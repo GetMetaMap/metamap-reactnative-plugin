@@ -8,7 +8,7 @@ category: 61ae8e8dba577a0010791480
 
 | LTS version (Recommended for most users): | Current Version(Latest features) |
 |-------------------------------------------|----------------------------------|
-| 4.11.0                                    | 4.11.2                           |
+| 4.11.4                                    | 4.11.4                           |
 
 ## Install MetaMap for React Native Expo
 
