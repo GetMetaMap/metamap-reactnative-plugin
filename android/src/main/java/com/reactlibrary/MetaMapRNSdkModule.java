@@ -4,8 +4,10 @@ import android.app.Activity;
 import android.content.Intent;
 import android.util.Log;
 import android.graphics.Color;
+
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
 import com.facebook.react.bridge.ActivityEventListener;
 import com.facebook.react.bridge.Arguments;
 import com.facebook.react.bridge.ReactApplicationContext;
@@ -39,7 +41,24 @@ public class MetaMapRNSdkModule extends ReactContextBaseJavaModule implements Ac
     }
 
     @ReactMethod
-    public void showFlow(final String clientId, @Nullable final String flowId , @Nullable final ReadableMap metadata) {
+    public void showFlowWithConfigurationId(final String clientId, @Nullable final String flowId, @Nullable final ReadableMap metadata, @Nullable final String configurationId, @Nullable final String encryptionConfigurationId) {
+        reactContext.runOnUiQueueThread(new Runnable() {
+            @Override
+            public void run() {
+                MetamapSdk.INSTANCE.startFlow(getReactApplicationContext().getCurrentActivity(),
+                        clientId,
+                        flowId,
+                        convertToMetadata(metadata),
+                        2576,
+                        configurationId,
+                        encryptionConfigurationId);
+                reactContext.addActivityEventListener(MetaMapRNSdkModule.this);
+            }
+        });
+    }
+
+    @ReactMethod
+    public void showFlow(final String clientId, @Nullable final String flowId, @Nullable final ReadableMap metadata) {
         reactContext.runOnUiQueueThread(new Runnable() {
             @Override
             public void run() {
@@ -54,8 +73,8 @@ public class MetaMapRNSdkModule extends ReactContextBaseJavaModule implements Ac
 
     @Override
     public void onActivityResult(Activity activity, int requestCode, int resultCode, Intent data) {
-        if(requestCode == MetamapSdk.DEFAULT_REQUEST_CODE) {
-            if(data != null) {
+        if (requestCode == MetamapSdk.DEFAULT_REQUEST_CODE) {
+            if (data != null) {
                 WritableMap params = Arguments.createMap();
                 params.putString("identityId", data.getStringExtra(MetamapSdk.ARG_IDENTITY_ID));
                 params.putString("verificationId", data.getStringExtra(MetamapSdk.ARG_VERIFICATION_ID));
@@ -95,7 +114,7 @@ public class MetaMapRNSdkModule extends ReactContextBaseJavaModule implements Ac
             metadataBuilder.with("sdkType", "react-native-android");
             return metadataBuilder.build();
         } else {
-            return  null;
+            return null;
         }
     }
 
