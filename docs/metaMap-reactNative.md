@@ -8,11 +8,8 @@ category: 61ae8e8dba577a0010791480
 
 | LTS version (Recommended for most users): | Current Version(Latest features) |
 |-------------------------------------------|----------------------------------|
-| 5.0.3                                     | 5.0.3                            |
+| 5.1.0                                     | 5.0.3                            |
 
-## Install MetaMap for React Native Expo
-
-https://www.npmjs.com/package/react-native-expo-metamap-sdk
 
 ## Install MetaMap for React Native
 
@@ -90,9 +87,9 @@ export default class App extends Component {
   handleMetaMapClickButton = () => {
 
 	 //set 3 params clientId (cant be null), flowId, metadata
-  	  var yourMetadata = { param1: "value1", param2: "value2" }
+  	  var metaData = { param1: "value1", param2: "value2" }
 
-   	 MetaMapRNSdk.showFlow("YOUR_CLIENT_ID", "YOUR_FLOW_ID", yourMetadata);
+   	 MetaMapRNSdk.showFlow("YOUR_CLIENT_ID", "YOUR_FLOW_ID", metaData);
   }
 
   //Add button to view graph
@@ -138,8 +135,8 @@ function App(props) {
     const handleMetaMapClickButton = (props) => {
 
             //set 3 params clientId (cant be null), flowId, metadata
-         var yourMetadata = { param1: "value1", param2: "value2" }
-       	 MetaMapRNSdk.showFlow("YOUR_CLIENT_ID", "YOUR_FLOW_ID", yourMetadata);
+         var metaData = { param1: "value1", param2: "value2" }
+       	 MetaMapRNSdk.showFlow("YOUR_CLIENT_ID", "YOUR_FLOW_ID", metaData);
       }
 
     return (
@@ -161,26 +158,34 @@ export default App;
 
 ## Metadata Usage
 
-Metadata is an additional optional parameter that you can receive using a webhook after passing verification:
+Metadata is an additional optional parameter that can be used to replace certain settings:
 
-Set the Language:
+# Set the Language:
+By default the SDK language is set to "en" but it is editable to the language from the list: "es", "fr", "pt", "ru", "tr", "de", "it", "pl", "th".
 ```bash
-yourMetadata: {"fixedLanguage": "es"}
+metaData: {"fixedLanguage": "value"}
 ```
 
-Set the Button Color
+# Set the Button Color
+By default main button color is white but it is editable by using hex Color format "hexColor".
 ```bash
-yourMetadata: {"buttonColor": "hexColor"}
+metaData: {"buttonColor": "value"}
 ```
 
-Set the Title color of the button:
+# Set the Title color of the button:
+By default main button title color is black but it is editable by using hex Color format "hexColor".
 ```bash
-yourMetadata: {"buttonTextColor": "hexColor"}
+metaData: {"buttonTextColor": "hexColor"}
 ```
 
-Set identity Id as parameter for re-verification:
+# Set identity Id as parameter for re-verification:
 ```bash
 metadata: {"identityId": "value"}
+   ```
+
+# Set encryption Configuration Id as parameter for encrypting data.
+```bash
+metaData: ["encryptionConfigurationId": "value"]
    ```
 
 ## Some error codes you may get during integration
