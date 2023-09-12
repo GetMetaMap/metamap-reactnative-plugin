@@ -160,30 +160,30 @@ export default App;
 
 Metadata is an additional optional parameter that can be used to replace certain settings:
 
-# Set the Language:
+### Set the Language:
 By default the SDK language is set to "en" but it is editable to the language from the list: "es", "fr", "pt", "ru", "tr", "de", "it", "pl", "th".
 ```bash
 metaData: {"fixedLanguage": "value"}
 ```
 
-# Set the Button Color
+### Set the Button Color
 By default main button color is white but it is editable by using hex Color format "hexColor".
 ```bash
 metaData: {"buttonColor": "value"}
 ```
 
-# Set the Title color of the button:
+### Set the Title color of the button:
 By default main button title color is black but it is editable by using hex Color format "hexColor".
 ```bash
 metaData: {"buttonTextColor": "hexColor"}
 ```
 
-# Set identity Id as parameter for re-verification:
+### Set identity Id as parameter for re-verification:
 ```bash
 metadata: {"identityId": "value"}
    ```
 
-# Set encryption Configuration Id as parameter for encrypting data.
+### Set encryption Configuration Id as parameter for encrypting data.
 ```bash
 metaData: ["encryptionConfigurationId": "value"]
    ```
