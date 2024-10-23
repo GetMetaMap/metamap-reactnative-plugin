@@ -1,7 +1,7 @@
 {
   "name": "react-native-metamap-sdk",
   "title": "React Native MetaMap Id Sdk",
-  "version": "5.2.0",
+  "version": "5.2.1",
   "description": "MetaMap React Nastive Plugin",
   "main": "index.js",
   "scripts": {
@@ -28,6 +28,9 @@
   "licenseFilename": "LICENSE",
   "readmeFilename": "README.md",
   "dependencies": {
+    "@types/react": "^18.2.6",
+    "react": "^18.2.0",
+    "react-native": "0.75.4"
   },
   "devDependencies": {
     "expo-module-scripts": "^3.1.0"
