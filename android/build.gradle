@@ -5,13 +5,16 @@ def safeExtGet(prop, fallback) {
 }
 
 buildscript {
+    ext.kotlin_version = '1.9.0'
     if (project == rootProject) {
         repositories {
             google()
             mavenCentral()
+            maven { url "https://jitpack.io" }
         }
         dependencies {
-            classpath 'com.android.tools.build:gradle:7.0.2'
+            classpath 'com.android.tools.build:gradle:8.3.0'
+            classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.8.0"
         }
     }
 }
@@ -19,7 +22,7 @@ buildscript {
 apply plugin: 'com.android.library'
 apply plugin: 'maven-publish'
 
-def DEFAULT_COMPILE_SDK_VERSION = 31
+def DEFAULT_COMPILE_SDK_VERSION = 34
 def DEFAULT_BUILD_TOOLS_VERSION = "31.0.0"
 def DEFAULT_MIN_SDK_VERSION = 21
 def DEFAULT_TARGET_SDK_VERSION = 31
@@ -50,6 +53,7 @@ repositories {
     }
     google()
     mavenCentral()
+    maven { url "https://jitpack.io" }
 }
 
 dependencies {
@@ -57,5 +61,6 @@ dependencies {
     // https://github.com/facebook/react-native/blob/0.61-stable/template/android/app/build.gradle#L192
     //noinspection GradleDynamicVersion
     implementation 'com.facebook.react:react-native:+'  // From node_modules
-    implementation 'com.metamap:android-sdk:3.41.2'
+    implementation ('com.metamap:android-sdk:3.42.4') {
+        exclude group: "com.airbnb.android", module: "lottie-compose"}
 }

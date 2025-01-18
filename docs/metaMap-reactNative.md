@@ -8,7 +8,7 @@ category: 61ae8e8dba577a0010791480
 
 | LTS version (Recommended for most users): | Current Version(Latest features) |
 |-------------------------------------------|----------------------------------|
-| 5.2.1                                     | 5.2.1                            |
+| 5.3.0                                     | 5.3.0                            |
 
 ## Install MetaMap for React Native
 
@@ -54,59 +54,6 @@ Add the following to your `info.plist` file to grant camera, microphone, and pho
    <summary>Example MetaMap React Native Expo Implementation</summary>
    <p>
 
-The following is an example of the class Component:
-
-```bash
-import React, {Component} from 'react';
-import {
-  NativeModules,
-  NativeEventEmitter,
-  Button,
-  View
-} from 'react-native';
-
-import {
-  MetaMapRNSdk,
-} from 'react-native-metamap-sdk';
-
-export default class App extends Component {
-  constructor() {
-    super();
-    console.log('Constructor Called.');
-  }
-
-  componentDidMount() {
-	 //set listening callbacks
-  	const MetaMapVerifyResult = new NativeEventEmitter(NativeModules.MetaMapRNSdk)
- 	 MetaMapVerifyResult.addListener('verificationSuccess', (data) => console.log(data))
- 	 MetaMapVerifyResult.addListener('verificationCanceled', (data) => console.log(data))
-  }
-
-  //call showFlow when button is clicked
-  handleMetaMapClickButton = () => {
-
-	 //set 3 params clientId (cant be null), flowId, metadata
-  	  var metaData = { param1: "value1", param2: "value2" }
-
-   	 MetaMapRNSdk.showFlow("YOUR_CLIENT_ID", "YOUR_FLOW_ID", metaData);
-  }
-
-  //Add button to view graph
-  render() {
-    return (
-      <View
-        style={{
-          flex: 1,
-          justifyContent: 'center',
-          alignItems: 'center',
-          backgroundColor: 'powderblue',
-        }}>
-        <Button onPress={this.handleMetaMapClickButton} title="Click here"/>
-      </View>
-    );
-  }
-}
-```
 
 The following is an example of the Function Component:
 
