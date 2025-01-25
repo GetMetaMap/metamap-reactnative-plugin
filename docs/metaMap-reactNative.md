@@ -8,7 +8,7 @@ category: 61ae8e8dba577a0010791480
 
 | LTS version (Recommended for most users): | Current Version(Latest features) |
 |-------------------------------------------|----------------------------------|
-| 5.3.0                                     | 5.3.0                            |
+| 5.3.1                                     | 5.3.1                            |
 
 ## Install MetaMap for React Native
 
