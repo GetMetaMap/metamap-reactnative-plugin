@@ -1,4 +1,3 @@
-# MetaMap for React Native and React Expo Usage Guides
-The MetaMap for React Native and React Expo usage guides can be found in the following locations:
+# MetaMap for React Native Usage Guide
 
-* [MetaMap for React Native](https://github.com/GetMetaMap/metamap-reactnative-plugin/blob/master/docs/metaMap-reactNative.md)
+* [Metamap React Native plugin Documentation](https://dash.readme.com/project/mati/v1.4/docs/quick-start-3)
