@@ -37,9 +37,9 @@ RCT_EXPORT_METHOD(showFlowWithConfigurationId:(NSString * _Nonnull)clientId flow
     }
 }
 
-- (void)verificationCancelled {
+- (void)verificationCancelledWithIdentityId:(NSString *)identityId verificationID:(nullable NSString *)verificationCancelled {
     if (hasListeners) {
-        [self sendEventWithName:@"verificationCanceled" body: nil];
+        [self sendEventWithName:@"verificationCanceled" body:@{@"identityId": identityId, @"verificationId": verificationID}];
     }
 }
 
