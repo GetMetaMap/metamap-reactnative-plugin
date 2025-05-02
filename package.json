@@ -1,15 +1,15 @@
 {
   "name": "react-native-metamap-sdk",
   "title": "React Native MetaMap Id Sdk",
-  "version": "5.3.4",
-  "description": "MetaMap React Nastive Plugin",
+  "version": "5.4.0",
+  "description": "MetaMap React Native Plugin",
   "main": "index.js",
   "scripts": {
     "test": "expo-module test",
     "build": "expo-module build",
     "clean": "expo-module clean",
     "prepare": "expo-module prepare",
-    "prepublishOnly": "expo-module prepublishOnly",
+    "republishOnly": "expo-module republishOnly",
     "expo-module": "expo-module"
   },
   "repository": {
