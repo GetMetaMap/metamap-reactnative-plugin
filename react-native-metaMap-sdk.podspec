@@ -19,7 +19,7 @@ Pod::Spec.new do |s|
   s.source_files = "ios/**/*.{h,m,swift}"
   s.requires_arc = true
   s.dependency "React"
-  s.dependency 'MetaMapSDK', '3.23.2'
+  s.dependency 'MetaMapSDK', '3.23.3'
   # s.dependency "..."
 end
 
