@@ -61,6 +61,6 @@ dependencies {
     // https://github.com/facebook/react-native/blob/0.61-stable/template/android/app/build.gradle#L192
     //noinspection GradleDynamicVersion
     implementation 'com.facebook.react:react-native:+'  // From node_modules
-    implementation ('com.metamap:android-sdk:3.42.9') {
+    implementation ('com.metamap:android-sdk:3.42.10') {
         exclude group: "com.airbnb.android", module: "lottie-compose"}
 }
