@@ -1,7 +1,7 @@
 {
   "name": "react-native-metamap-sdk",
   "title": "React Native MetaMap Id Sdk",
-  "version": "5.4.15",
+  "version": "5.4.16",
   "description": "MetaMap React Native Plugin",
   "main": "index.js",
   "scripts": {
