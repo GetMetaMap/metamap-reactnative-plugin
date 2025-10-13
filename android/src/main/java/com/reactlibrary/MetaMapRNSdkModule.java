@@ -9,6 +9,12 @@ import android.util.Log;
 
 import androidx.annotation.Nullable;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import com.facebook.react.bridge.Promise;
+import java.util.List;
+
 import com.facebook.react.bridge.ActivityEventListener;
 import com.facebook.react.bridge.Arguments;
 import com.facebook.react.bridge.ReactApplicationContext;
@@ -29,7 +35,9 @@ import kotlin.jvm.functions.Function2;
 public class MetaMapRNSdkModule extends ReactContextBaseJavaModule implements ActivityEventListener {
 
     // ---------- constants ----------
-    /**  You can change this to any free int, *but* it must match in both places. */
+    /**
+     * You can change this to any free int, *but* it must match in both places.
+     */
     private static final int METAMAP_REQUEST_CODE = MetamapSdk.DEFAULT_REQUEST_CODE;  // <-- FIX ①
     private static final String TAG = "MetaMapRN";
 
@@ -111,7 +119,8 @@ public class MetaMapRNSdkModule extends ReactContextBaseJavaModule implements Ac
         sendEvent(event, params);
     }
 
-    @Override public void onNewIntent(Intent intent) { /* not used */ }
+    @Override
+    public void onNewIntent(Intent intent) { /* not used */ }
 
     // ------------------------------------------------------------
     //  Helpers
@@ -138,22 +147,114 @@ public class MetaMapRNSdkModule extends ReactContextBaseJavaModule implements Ac
                 .emit(name, params);
     }
 
+
+    @Nullable
     private Metadata convertToMetadata(@Nullable ReadableMap map) {
         if (map == null) return null;
 
         Metadata.Builder builder = new Metadata.Builder();
-        for (Map.Entry<String, Object> entry : map.toHashMap().entrySet()) {
-            String key = entry.getKey();
-            Object value = entry.getValue();
 
-            if (key.toLowerCase().contains("color") && value instanceof String) {
-                // Accept both #RRGGBB and #AARRGGBB
-                builder.with(key, Color.parseColor((String) value));
-            } else {
-                builder.with(key, value);
+        Map<String, Object> root = map.toHashMap();
+        for (Map.Entry<String, Object> entry : root.entrySet()) {
+            final String key = entry.getKey();
+            final Object raw = entry.getValue();
+
+            // Preserve your color convenience:
+            if (key.toLowerCase().contains("color") && raw instanceof String) {
+                builder.additionalData(key, Color.parseColor((String) raw));
+                continue;
             }
+
+            // Normalize / convert nested values
+            putMetadataValue(builder, key, raw);
         }
-        builder.with("sdkType", "react-native-android");
+
+        // Keep your sdk type tag
+        builder.additionalData("sdkType", "react-native-android");
         return builder.build();
     }
+
+    @SuppressWarnings("unchecked")
+    private JSONObject toJsonObject(Map<String, Object> map) {
+        JSONObject json = new JSONObject();
+        for (Map.Entry<String, Object> e : map.entrySet()) {
+            final String k = e.getKey();
+            final Object v = e.getValue();
+            try {
+                if (v == null) {
+                    json.put(k, JSONObject.NULL);
+                } else if (v instanceof Map) {
+                    json.put(k, toJsonObject((Map<String, Object>) v));
+                } else if (v instanceof List) {
+                    json.put(k, toJsonArray((List<Object>) v));
+                } else if (v instanceof Double) {
+                    Double d = (Double) v;
+                    long asLong = d.longValue();
+                    json.put(k, (d == asLong) ? asLong : d);
+                } else {
+                    json.put(k, v);
+                }
+            } catch (Exception ignore) { /* no-op; avoid crash on weird values */ }
+        }
+        return json;
+    }
+
+
+    @SuppressWarnings("unchecked")
+    private JSONArray toJsonArray(List<Object> list) {
+        JSONArray arr = new JSONArray();
+        for (Object v : list) {
+            try {
+                if (v == null) {
+                    arr.put(JSONObject.NULL);
+                } else if (v instanceof Map) {
+                    arr.put(toJsonObject((Map<String, Object>) v));
+                } else if (v instanceof List) {
+                    arr.put(toJsonArray((List<Object>) v));
+                } else if (v instanceof Double) {
+                    Double d = (Double) v;
+                    long asLong = d.longValue();
+                    arr.put((d == asLong) ? asLong : d);
+                } else {
+                    arr.put(v);
+                }
+            } catch (Exception ignore) { /* no-op */ }
+        }
+        return arr;
+    }
+
+    @SuppressWarnings("unchecked")
+    private void putMetadataValue(Metadata.Builder builder, String key, Object raw) {
+        if (raw == null) return;
+
+        if (raw instanceof Map) {
+            // Nested object -> JSONObject
+            JSONObject obj = toJsonObject((Map<String, Object>) raw);
+            builder.additionalData(key, obj);
+            return;
+        }
+
+        if (raw instanceof List) {
+            // Array -> JSONArray
+            JSONArray arr = toJsonArray((List<Object>) raw);
+            builder.additionalData(key, arr);
+            return;
+        }
+
+        if (raw instanceof Double) {
+            // RN often gives numbers as Double; make integers look like integers
+            Double d = (Double) raw;
+            long asLong = d.longValue();
+            if (d == asLong) {
+                builder.additionalData(key, asLong); // integer-like
+            } else {
+                builder.additionalData(key, d);      // real double
+            }
+            return;
+        }
+
+        // Booleans, Strings, Integers, Longs, etc.
+        builder.additionalData(key, raw);
+    }
+
 }
