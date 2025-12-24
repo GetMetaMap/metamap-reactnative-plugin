@@ -1,7 +1,7 @@
 {
   "name": "react-native-metamap-sdk",
   "title": "React Native MetaMap Id Sdk",
-  "version": "5.4.25",
+  "version": "5.4.26",
   "description": "MetaMap React Native Plugin",
   "main": "index.js",
   "scripts": {
@@ -11,6 +11,10 @@
     "prepare": "expo-module prepare",
     "republishOnly": "expo-module republishOnly",
     "expo-module": "expo-module"
+  },
+  "peerDependencies": {
+    "react": "^18.2.0",
+    "react-native": ">=0.68 <=0.75"
   },
   "repository": {
     "type": "git",
@@ -30,7 +34,7 @@
   "dependencies": {
     "@types/react": "^18.2.6",
     "react": "^18.2.0",
-    "react-native": "0.74.0",
+    "react-native": "0.75.0",
     "react-native-metamap-sdk": "^5.4.1"
   },
   "devDependencies": {
