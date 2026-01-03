@@ -1,44 +1,67 @@
 {
   "name": "react-native-metamap-sdk",
-  "title": "React Native MetaMap Id Sdk",
-  "version": "5.4.26",
-  "description": "MetaMap React Native Plugin",
+  "version": "5.4.27",
+  "title": "React Native MetaMap ID SDK",
+  "description": "Official MetaMap (Mati) React Native SDK",
   "main": "index.js",
+  "types": "build/index.d.ts",
+
+  "files": [
+    "index.js",
+    "build/",
+    "plugin/build/",
+    "plugin/src/",
+    "android/src/",
+    "android/build.gradle",
+    "android/gradle/",
+    "android/gradlew",
+    "android/gradlew.bat",
+    "ios/",
+    "react-native-metaMap-sdk.podspec",
+    "README.md",
+    "docs/"
+  ],
+
   "scripts": {
-    "test": "expo-module test",
     "build": "expo-module build",
     "clean": "expo-module clean",
     "prepare": "expo-module prepare",
-    "republishOnly": "expo-module republishOnly",
-    "expo-module": "expo-module"
+    "test": "expo-module test"
   },
+
   "peerDependencies": {
-    "react": "^18.2.0",
+    "react": ">=18.0.0",
     "react-native": ">=0.68 <=0.75"
   },
+
+  "dependencies": {},
+
+  "devDependencies": {
+    "expo-module-scripts": "^3.1.0",
+    "@types/react": "^18.2.6"
+  },
+
   "repository": {
     "type": "git",
-    "url": "https://github.com/GetMetaMap/mati-reactnative-plugin",
-    "baseUrl": "https://github.com/GetMetaMap/mati-reactnative-plugin"
+    "url": "https://github.com/GetMetaMap/mati-reactnative-plugin"
   },
+
   "keywords": [
-    "react-native"
+    "react-native",
+    "metamap",
+    "mati",
+    "kyc",
+    "identity-verification"
   ],
+
   "author": {
     "name": "Avo Sukiasyan",
     "email": "avetik.sukiasyan@metamap.com"
   },
+
   "license": "MIT",
-  "licenseFilename": "LICENSE",
-  "readmeFilename": "README.md",
-  "dependencies": {
-    "@types/react": "^18.2.6",
-    "react": "^18.2.0",
-    "react-native": "0.75.0",
-    "react-native-metamap-sdk": "^5.4.1"
-  },
-  "devDependencies": {
-    "expo-module-scripts": "^3.1.0"
-  },
-  "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
+
+  "publishConfig": {
+    "access": "public"
+  }
 }
