@@ -1,11 +1,10 @@
 {
   "name": "react-native-metamap-sdk",
-  "version": "5.4.27",
+  "version": "5.4.28",
   "title": "React Native MetaMap ID SDK",
   "description": "Official MetaMap (Mati) React Native SDK",
   "main": "index.js",
   "types": "build/index.d.ts",
-
   "files": [
     "index.js",
     "build/",
@@ -21,31 +20,24 @@
     "README.md",
     "docs/"
   ],
-
   "scripts": {
     "build": "expo-module build",
     "clean": "expo-module clean",
     "prepare": "expo-module prepare",
     "test": "expo-module test"
   },
-
   "peerDependencies": {
     "react": ">=18.0.0",
     "react-native": ">=0.68 <=0.75"
   },
-
-  "dependencies": {},
-
   "devDependencies": {
-    "expo-module-scripts": "^3.1.0",
-    "@types/react": "^18.2.6"
+    "@types/react": "^18.2.6",
+    "expo-module-scripts": "^3.1.0"
   },
-
   "repository": {
     "type": "git",
     "url": "https://github.com/GetMetaMap/mati-reactnative-plugin"
   },
-
   "keywords": [
     "react-native",
     "metamap",
@@ -53,14 +45,11 @@
     "kyc",
     "identity-verification"
   ],
-
   "author": {
     "name": "Avo Sukiasyan",
     "email": "avetik.sukiasyan@metamap.com"
   },
-
   "license": "MIT",
-
   "publishConfig": {
     "access": "public"
   }
