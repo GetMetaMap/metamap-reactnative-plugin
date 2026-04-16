@@ -1,6 +1,6 @@
 {
   "name": "react-native-metamap-sdk",
-  "version": "5.4.32",
+  "version": "5.4.36",
   "title": "React Native MetaMap ID SDK",
   "description": "Official MetaMap (Mati) React Native SDK",
   "main": "index.js",
@@ -34,11 +34,13 @@
   },
   "peerDependencies": {
     "react": ">=18.0.0",
-    "react-native": ">=0.68 <=0.75"
+    "react-native": ">=0.68"
   },
   "devDependencies": {
-    "@types/react": "^18.2.6",
-    "expo-module-scripts": "^3.1.0"
+    "@types/react": "^19.1.1",
+    "expo-module-scripts": "^3.1.0",
+    "react": "19.2.5",
+    "react-native": "0.85.1"
   },
   "repository": {
     "type": "git",
