@@ -1,6 +1,6 @@
 {
   "name": "react-native-metamap-sdk",
-  "version": "5.4.36",
+  "version": "5.4.37",
   "title": "React Native MetaMap ID SDK",
   "description": "Official MetaMap (Mati) React Native SDK",
   "main": "index.js",
